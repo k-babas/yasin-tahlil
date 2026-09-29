@@ -1,0 +1,72 @@
+/* === Design Tokens === */
+:root {
+  /* Colors */
+  --color-primary: #12211A;
+  --color-secondary: #5C6B63;
+  --color-tertiary: #A8863F;
+  --color-neutral: #F7F3EA;
+  --color-on-primary: #F7F3EA;
+  --color-on-tertiary: #12211A;
+  --color-muted: #9FB3A8;
+  --color-surface-deep: #0C1712;
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-arabic: 'Amiri', serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  /* Radii */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 48px;
+  --space-xxl: 96px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 600ms ease;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-normal: 0ms;
+    --transition-slow: 0ms;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark section override */
+.tahlil-section {
+  background-color: var(--color-surface-deep);
+  color: var(--color-on-primary);
+}
+
+.tahlil-section .taitial,
+.tahlil-section h2,
+.tahlil-section h3 {
+  color: var(--color-tertiary);
+}
+
+.tahlil-section .latin,
+.tahlil-section .terjemah {
+  color: var(--color-muted);
+}
+
+.tahlil-section .btn-toggle {
+  color: var(--color-tertiary);
+  border-color: var(--color-tertiary);
+}

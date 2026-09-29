@@ -1,0 +1,192 @@
+#!/usr/bin/env python3
+"""Build correct tahlil.json for Tahlil Al-Akmal from quran.nu.or.id."""
+import json
+from pathlib import Path
+
+OUT = Path(__file__).resolve().parent.parent / "assets" / "data" / "tahlil.json"
+
+bait = [
+    {
+        "n": 1,
+        "section": "Pembukaan",
+        "ar": "إِلَى حَضْرَةِ النَّبِيِّ الْمُصْطَفَى سَيِّدِنَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ وَاٰلِهِ وَأَزْوَاجِهِ وَأَوْلَادِهِ وَذُرِّيَّاتِهِ الْفَاتِحَةُ ثُمَّ إِلَى حَضْرَةِ إِخْوَانِهِ مِنَ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَالْأَوْلِيَاءِ وَالشُّهَدَاءِ وَالصَّالِحِيْنَ وَالصَّحَابَةِ وَالتَّابِعِيْنَ وَالْعُلَمَاءِ الْعَامِلِيْنَ وَالْمُصَنِّفِيْنَ الْمُخْلِصِيْنَ وَجَمِيْعِ الْمَلَائِكَةِ الْمُقَرَّبِيْنَ، خُصُوْصًا إِلَى سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيْلَانِي وَخُصُوْصًا إِلَى مُؤَسِّسِيْ جَمْعِيَّةِ نَهْضَةِ الْعُلَمَاءِ الْفَاتِحَةُ ثُمَّ إِلَى جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ إِلَى مَغَارِبِهَا بَرِّهَا وَبَحْرِهَا خُصُوْصًا إِلَى اٰبَائِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا وَمَشَايِخِنَا وَمَشَايِخِ مَشَايِخِنَا وَأَسَاتِذَةِ أَسَاتِذَتِنَا وَلِمَنْ أَحْسَنَ إِلَيْنَا وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ الْفَاتِحَةُ ثُمَّ إِلَى جَمِيْعِ أهْلِ الْقُبُوْرِ مِمَّنْ ذُكِرَتْ أَسْمَاؤُهُ فِيْ هٰذِهِ الرِّسَالَةِ حَضْرَةِ رُوْحِ … وَحَضْرَةِ رُوْحِ … وَحَضْرَةِ رُوْحِ … رَحِمَهُمُ اللهُ وَغَفَرَهُمْ، الْفَاتِحَةُ",
+        "latin": "Ilâ ḫadlratin-nabiyyil-musthafâ sayyidinâ Muḫammadin shallallâhu 'alaihi wa sallam wa âlihi wa azwâjihi wa awlâdihi wa dzurriyyâtihi al-fâtiḫah. Tsumma ilâ ḫadlrati ikhwânihi minal-anbiyâ' wal-mursalîn wal-auliyâ' wasy-syuhadâ' wash-shâlihîn wash-shaḫâbati wat-tâbi'în wal-'ulamâ'il-'âmilîn wal-mushannifînal-mukhlashîn wa jamî'il-malâikatil-muqarrabîn, khusûshan ilâ sayyidinâsy-syaikh 'abdil-qâdir al-jîlânî wa khushûshan ilâ muassisî jam'iyyah Nahdlatil Ulama al-fâtiḫah. Tsumma ilâ jamî'i ahlil-qubûri minal-muslimîna wal-muslimâti wal-mu'minîna wal-mu'minâti min masyâriqil-ardli ilâ maghâribihâ barrihâ wa baḫrihâ khushûshan ilâ abâ'inâ wa ummahâtinâ wa ajdâdinâ wa jaddâtina wa masyâkhinâ wa masyâyikhi masyâyikhinâ wa asâtidzati asâtidzatinâ wa liman aḫsana ilainâ wa liman ijtama'nâ hâhunâ bisababihi al-fâtiḫah. Tsumma ilâ jamî'i ahlil-qubûri mimman dzukirot asmâ'uhu fi hâdzihir-risâlati ḫadlrati-rûhi…, wa ḫadlrati-rûhi…, wa ḫadlrati-rûhi…, roḫimahumullâhu wa ghafarahum al-fâtiḫah",
+        "id": "Kepada yang terhormat Nabi Muhammad, segenap keluarga, istri-istrinya, anak-anaknya, dan keturunannya. Bacaan Al-Fatihah ini kami tujukan. Kemudian kepada segenap saudara beliau dari kalangan para nabi, rasul, wali, syuhada, orang-orang saleh, sahabat, tabi'in, ulama al-amilin, ulama penulis yang ikhlas, semua malaikat Muqarrabin, terkhusus kepada Syekh Abdul Qadir al-Jilani dan para pendiri organisasi Nahdlatul Ulama. Kemudian kepada semua ahli kubur Muslimin, Muslimat, Mukminin, Mukminat dari Timur ke Barat, baik di laut dan di darat, khususnya bapak kami, ibu kami, kakek kami, nenek kami, guru kami, pengajar dari guru kami, mereka yang telah berbuat baik kepada kami, dan bagi ahli kubur/arwah yang menjadi sebab kami berkumpul di sini. Kemudian kepada semua ahli kubur, yang namanya disebutkan dalam risalah ini."
+    },
+    {
+        "n": 2,
+        "section": "Qul Huwallahu Ahad",
+        "ar": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ هُوَ اللّٰهُ اَحَدٌۚ، اَللّٰهُ الصَّمَدُۚ، لَمْ يَلِدْ وَلَمْ يُوْلَدْۙ، وَلَمْ يَكُنْ لَّهٗ كُفُوًا اَحَـــــدٌ",
+        "latin": "Bismillâhir-raḫmânir-raḫîm(i), Qul huwallâhu aḫad, Allâhush-shamad, lam yalid wa lam yûlad, wa lam yakul lahû kufuwan aḫad (3x)",
+        "id": "Dengan menyebut nama Allah yang maha pengasih lagi maha penyayang. Katakanlah (Muhammad), Dialah Allah, Yang Maha Esa. Allah tempat meminta segala sesuatu. (Allah) tidak beranak dan tidak pula diperanakkan. Dan tidak ada sesuatu yang setara dengan Dia."
+    },
+    {
+        "n": 3,
+        "section": "La ilaha illallah",
+        "ar": "لَا إِلٰهَ إِلَّا اللهُ وَاللهُ أَكْبَرُ",
+        "latin": "Lâ ilâha illâllâhu wallâhu akbar",
+        "id": "Tiada tuhan yang layak disembah kecuali Allah. Allah maha besar."
+    },
+    {
+        "n": 4,
+        "section": "Qul A'udzu Rabbil-Falaq",
+        "ar": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ اَعُوْذُ بِرَبِّ الْفَلَقِۙ، مِنْ شَرِّ مَـــا خَلَقَۙ، وَمِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَۙ، وَمِنْ شَرِّ النَّفّٰثٰتِ فِى الْعُقَدِۙ، وَمِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ",
+        "latin": "Bismillâhir-raḫmânir-raḫîm(i), Qul a'udzu bi-rabbil-falaq, min syarri mâ khalaq, wa min syarri ghâsiqin idzâ waqab, wa min syarrin-naffâtsâti fîl-'uqad, wa min syarri ḫâsidin idzâ ḫasad",
+        "id": "Dengan menyebut nama Allah yang maha pengasih lagi maha penyayang. Katakanlah, Aku berlindung kepada Tuhan yang menguasai subuh, dari kejahatan (makhluk yang) Dia ciptakan, dan dari kejahatan malam apabila telah gelap gulita, dan dari kejahatan (perempuan-perempuan) penyihir yang meniup pada buhul-buhul (talinya), dan dari kejahatan orang yang dengki apabila dia dengki."
+    },
+    {
+        "n": 5,
+        "section": "La ilaha illallah",
+        "ar": "لَا إِلٰهَ إِلَّا اللهُ وَاللهُ أَكْبَرُ",
+        "latin": "Lâ ilâha illâllâhu wallâhu akbar",
+        "id": "Tiada tuhan yang layak disembah kecuali Allah. Allah maha besar."
+    },
+    {
+        "n": 6,
+        "section": "Qul A'udzu Rabbin-Nas",
+        "ar": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ اَعُوْذُ بِرَبِّ النَّاسِۙ، مَلِكِ النَّـــاسِۙ، اِلٰهِ النَّـــاسِۙ، مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِۖ، الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِۙ، مِنَ الْجِنَّةِ وَالنَّـــاسِ",
+        "latin": "Bismillâhir-raḫmânir-raḫîm(i), Qul a'udzu bi-rabbin-nâs, malikin-nâs, ilahin-nâs, min syarril-waswâsil-khannâs, alladzi yuwaswisu fî shudûrin-nâs, minal-jinnati wan-nâs",
+        "id": "Dengan menyebut nama Allah yang maha pengasih lagi maha penyayang. Katakanlah, Aku berlindung kepada Tuhannya manusia, raja manusia, sembahan manusia, dari kejahatan (bisikan) setan yang bersembunyi, yang membisikkan (kejahatan) ke dalam dada manusia, dari (golongan) jin dan manusia."
+    },
+    {
+        "n": 7,
+        "section": "La ilaha illallah",
+        "ar": "لَا إِلٰهَ إِلَّا اللهُ وَاللهُ أَكْبَرُ",
+        "latin": "Lâ ilâha illâllâhu wallâhu akbar",
+        "id": "Tiada tuhan yang layak disembah kecuali Allah. Allah maha besar."
+    },
+    {
+        "n": 8,
+        "section": "Al-Fatihah",
+        "ar": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ، اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ، الرَّحْمٰنِ الرَّحِيْمِ، مٰلِكِ يَوْمِ الدِّيْنِ، اِيَّاكَ نَعْبُدُ وَاِيَّاكَ نَسْتَعِيْنُ، اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ، صِرَاطَ الَّذِيْنَ اَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ",
+        "latin": "Bismillâhir-raḫmânir-raḫîm(i), al-ḫamdu lillâhi rabbil-'âlamîn, Ar-raḫmânir-raḫîm, mâliki yaumid-dîn, iyyâka na'budu wa iyyâka nasta'în, ihdinâsh-shirâthal-mustaqîm, shirâtal-ladzîna an'amta 'alaihim ghairil-maghdlûbi 'alaihim wa lâdl-dlâllîn. Amîn",
+        "id": "Dengan menyebut nama Allah yang maha pengasih lagi maha penyayang. Segala puji bagi Allah, Tuhan semesta alam. Yang maha pengasih lagi maha penyayang. Yang menguasai hari pembalasan. Hanya kepada-Mu kami menyembah. Hanya kepada-Mu pula kami memohon pertolongan. Tunjukkanlah kami ke jalan yang lurus, yaitu jalan orang-orang yang telah Kauanugerahi nikmat kepada mereka, bukan jalan mereka yang dimurkai dan bukan pula jalan mereka yang sesat."
+    },
+    {
+        "n": 9,
+        "section": "Al-Baqarah",
+        "ar": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ، الۤــــــمّۤۚ، ذٰلِكَ الْكِتٰبُ لَا رَيْبَۛ فِيْهِۛ هُدًى لِّلْمُتَّقِيْنَ، الَّذِيْنَ يُؤْمِنُوْنَ بِالْغَيْبِ وَيُقِيْمُوْنَ الصَّلٰوةَ وَمِمَّا رَزَقْنٰهُمْ يُنْفِقُوْنَ، وَالَّذِيْنَ يُؤْمِنُوْنَ بِمَآ اُنْزِلَ اِلَيْكَ وَمَآ اُنْزِلَ مِنْ قَبْلِكَ وَبِالْاٰخِرَةِ هُمْ يُوْقِنُوْنَ، اُولٰۤىِٕكَ عَلٰى هُدًى مِّنْ رَّبِّهِمْ وَاُولٰۤىِٕكَ هُمُ الْمُفْلِحُوْنَ",
+        "latin": "Bismillâhir-rahmânir-rahîm(i), Alif Lâm Mîm, dzâlikal-kitâbu lâ raiba fîhi, hudal-lilmuttaqîn, al-ladzîna yu'minûna bil-ghaibi wa yuqîmûnash-shalâta wa mimmâ razaqnâhum yunfiqûn, wal-ladzîna yu'minûna bimâ unzila ilaika wa mâ unzila min qablika, wa bil-âkhirati hum yûqinûn, ulâ'ika 'alâ hudam mir-rabbihim wa ulâ'ika humul-mufliḫûn",
+        "id": "Dengan menyebut nama Allah yang maha pengasih lagi maha penyayang. Alif lam mim. Demikian itu kitab ini tidak ada keraguan padanya. Sebagai petunjuk bagi mereka yang bertakwa."
+    },
+    {
+        "n": 10,
+        "section": "La ilaha illallah + Ayat Kursi",
+        "ar": "وَإِلٰهُكُمْ إِلٰهٌ وَّاحِدٌ لَا إِلٰهَ إِلَّا هُوَ الرَّحْمٰنُ الرَّحِيمُ اَللّٰهُ لَآ اِلٰهَ اِلَّا هُوَۚ اَلْحَيُّ الْقَيُّوْمُ، لَا تَأْخُذُهٗ سِنَةٌ وَّلَا نَوْمٌۗ لَهٗ مَا فِى السَّمٰوٰتِ وَمَا فِى الْاَرْضِۗ مَنْ ذَا الَّذِيْ يَشْفَعُ عِنْدَهٗٓ اِلَّا بِاِذْنِهٖۗ يَعْلَمُ مَا بَيْنَ اَيْدِيْهِمْ وَمَا خَلْفَهُمْۚ وَلَا يُحِيْطُوْنَ بِشَيْءٍ مِّنْ عِلْمِهٖٓ اِلَّا بِمَا شَاۤءَۚ وَسِعَ كُرْسِيُّهُ السَّمٰوٰتِ وَالْاَرْضَۚ وَلَا يَـُٔوْدُهٗ حِفْظُهُمَاۚ وَهُوَ الْعَلِيُّ الْعَظِيْمُ",
+        "latin": "Wa ilâhukum ilâhuw-wâḫidul-lâ ilâha illa Huwar-raḫmânur-raḫîm. Allâhu lâ ilâha illa Huwal-ḫayyul-qayyûm(u). Lâ ta'khudzuhû sinatuw wa lâ naûm(u). Lahû mâ fis-samâwâti wa mâ fil-ardl. Man dzal-ladzî yasyfa'u 'indahû illâ bi-idznih(i). Ya'lamu mâ baina-aidîhim wa mâ khalfahum. Wa lâ yuḫithûna bi-syai'in min-'ilmihî illâ bimâ syâ'a. Wasi'a-kursiyyuhus-samawâti wal-ardl. Wa lâ ya'ûduhu ḫifdhuhumâ wahuwal-'aliyyul-adhîm",
+        "id": "Dan Tuhan kalian adalah Tuhan yang maha esa. Tiada tuhan yang layak disembah kecuali Dia yang maha pengasih lagi maha penyayang. Allah, tiada yang layak disembah kecuali Dia yang hidup kekal lagi berdiri sendiri. Tidak mengantuk dan tidak tidur. Milik-Nya apa yang ada di langit dan di bumi. Tiada yang dapat memberikan syafaat di sisi-Nya kecuali dengan izin-Nya. Dia mengetahui apa yang ada di hadapan dan di belakang mereka. Mereka tidak mengetahui sesuatu dari ilmu-Nya kecuali apa yang dikehendaki-Nya. Kursi Allah meliputi langit dan bumi. Dia tidak merasa berat menjaga keduanya. Dia maha tinggi lagi maha agung."
+    },
+    {
+        "n": 11,
+        "section": "Istighfar",
+        "ar": "أَسْتَغْفِرُ اللهَ الْعَـــظِيْمَ (3x)",
+        "latin": "Astaghfirullâhal-'adhîm (3x)",
+        "id": "Saya mohon ampun kepada Allah yang maha agung (3 kali)."
+    },
+    {
+        "n": 12,
+        "section": "Dzikir Maujud",
+        "ar": "أَفْضَلُ الذِّكْرِ فَاعْلَمْ أَنَّهُ لَا إِلٰهَ إِلَّا اللهُ، حَيٌّ مَوْجُوْدٌ",
+        "latin": "Afdlaludz-dzikri fa'lam annahu lâ ilâha illallâhu ḫayyun maujûd(un)",
+        "id": "Sebaik-baik dzikir -- ketahuilah -- adalah lafal Lâ ilâha illallâh, tiada tuhan selain Allah, Dzat yang Mahahidup dan Wujud."
+    },
+    {
+        "n": 13,
+        "section": "Dzikir Ma'bud",
+        "ar": "لَا إِلٰهَ إِلَّا اللهُ، حَيٌّ مَعْبُوْدٌ",
+        "latin": "La ilâha illâllâhu ḫayyun ma'bûd",
+        "id": "Tiada tuhan selain Allah, Dzat yang mahahidup dan disembah."
+    },
+    {
+        "n": 14,
+        "section": "Dzikir Baqi",
+        "ar": "لَاَ إِلٰهَ إِلَّا اللهُ، حَيٌّ بَاقٍ",
+        "latin": "La ilâha illâllâhu ḫayyun bâq",
+        "id": "Tiada tuhan selain Allah, Dzat yang Mahahidup dan kekal."
+    },
+    {
+        "n": 15,
+        "section": "La ilaha illallah x100",
+        "ar": "لَا إِلٰهَ إِلَّا اللهُ (100x)",
+        "latin": "La ilâha illâllâh (100x)",
+        "id": "Tiada tuhan selain Allah (100 kali)."
+    },
+    {
+        "n": 16,
+        "section": "Sholawat Nabi",
+        "ar": "اَللّٰهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ اَللّٰهُمَّ صَلِّ عَلَيْهِ وَسَلِّمْ (2x)",
+        "latin": "Allâhumma shalli 'alâ sayyidinâ Muḫammadin, Allâhumma shalli 'alaihi wa sallim (2x)",
+        "id": "Ya Allah, limpahkan rahmat takzim dan keselamatan kepada pemimpin kami, Nabi Muhammad (2 kali)."
+    },
+    {
+        "n": 17,
+        "section": "Subhanallah",
+        "ar": "سُبْحَــانَ اللهِ عَدَدَ مَـــا خَلَقَ اللهُ (7x)",
+        "latin": "Subḫânallâhi 'adada mâ khalaqallâhu (7x)",
+        "id": "Mahasuci Allah sebanyak makhluk yang Allah ciptakan (7 kali)."
+    },
+    {
+        "n": 18,
+        "section": "Subhanallah wa bihamdihi",
+        "ar": "سُبحَانَ اللهِ وَبِحَمْدِهِ سُبْحَانَ اللهِ الْعَظِيمِ (33x)",
+        "latin": "Subḫânallâhi wa biḫamdihi subḫânallâhil-'adhîm (33x)",
+        "id": "Mahasuci Allah dengan segala pujian untuk-Nya. Mahasuci Allah yang Mahaagung (33 kali)."
+    },
+    {
+        "n": 19,
+        "section": "Sholawat Habibik 1",
+        "ar": "اَللّٰهُمَّ صَلِّ عَلَى حَبِيْبِكَ سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ (2x)",
+        "latin": "Allâhumma shalli 'alâ ḫabîbika sayyidinâ Muḫammadin wa âlihi wa shaḫbihi wa sallim (2x)",
+        "id": "Ya Allah, limpahkan rahmat takzim dan keselamatan kepada kekasih-Mu, pemimpin kami, Nabi Muhammad, berikut keluarga dan sahabatnya (2 kali)."
+    },
+    {
+        "n": 20,
+        "section": "Sholawat Habibik 2",
+        "ar": "اَللّٰهُمَّ صَلِّ عَلَى حَبِيْبِكَ سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَبَارِكْ وَسَلِّمْ أَجْمَعِيْنَ",
+        "latin": "Allâhumma shalli 'alâ ḫabîbika sayyidinâ Muḫammadin wa 'alâ âlihi wa shaḫbihi wa bârik wa sallim ajma'în",
+        "id": "Ya Allah, limpahkanlah rahmat kepada kekasih-Mu, pemimpin kami, Nabi Muhammad, berikut keluarga dan sahabatnya. Limpahkanlah pula berkah dan keselamatan kepada mereka semua."
+    },
+    {
+        "n": 21,
+        "section": "Doa Pembuka",
+        "ar": "أَعُوْذُ بِاللهِ مِنَ الشَّيْطَانِ الرَّجِيْمِ، بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ، الْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ، حَمْدَ الشَّاكِرِيْنَ حَمْدَ النَّاعِمِيْنَ، حَمْدًا يُّوَافِي نِعَمَهُ وَيُكَافِئُ مَزِيْدَهُ، يَا رَبَّنَا لَكَ الْحَمْدُ كَمَا يَنْبَغِيْ لِجَلَالِ وَجْهِكَ وَعَظِيْمِ سُلْطَانِكَ، اللّٰهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَّعَلَى اٰلِ سَيِّدِنَا مُحِمَّدٍ",
+        "latin": "A'ûdzubillâhi minasy-syaithânir-rajîm, bismillâhir-raḫmânir-raḫîm, al-ḫamdulillâhi rabbil-'alamîn, ḫamdasy-syâkirin, ḫamdan nâ'imîn, ḫamdan yuwâfî ni'amahu wa yukâfî'u mazîdah(u), yâ rabbanâ lakal-ḫamdu kamâ yanbaghî lijalâli wajhika wa 'adhîmi sulthânika, allâhumma shalli 'alâ sayyidinâ Muḫammadin wa 'alâ-âli sayyidinâ Muḫammadin.",
+        "id": "Aku berlindung diri kepada Engkau dari setan yang di rajam. Dengan nama Allah yang Maha Pengasih lagi Maha Penyayang. Segala puji bagi Allah, Tuhan seru sekalian alam, sebagaimana orang-orang yang bersyukur dan orang yang memperoleh nikmat sama memuji, dengan pujian yang sesuai dengan nikmatnya dan memungkinkan di tambah nikmatnya. Tuhan kami, hanya Engkau segala puji, sebagaimana yang patut terhadap kemuliaan Engkau dan keagungan Engkau. Ya Allah tambahkanlah kesejahteraan dan keselamatan kepada penghulu kami Nabi Muhammad dan kepada keluarganya."
+    },
+    {
+        "n": 22,
+        "section": "Doa Taqabbal",
+        "ar": "اَللّٰهُمَّ تَقَبَّلْ وَأَوْصِلْ ثَوَابَ مَا قَرَاْنَاهُ مِنَ الْقُرْآنِ الْعَظِيْمِ وَمَا هَلَّلْنَا وَمَا سَبَّحْنَا وَمَا اسْتَغْفَرْنَا وَمَا صَلَّيْنَا عَلَى سَيِّدِنَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ هَدِيَّةً وَاصِلَةً وَرَحْمَةً نَازِلَةً وَبَرَكَةً شَامِلَةً إِلَى حَضَرَةِ حَبِيْبِنَا وَشَفِيْعِنَا وَقُرَّةِ أَعْيُنِنَا سَيِّدِنَا وَمَوْلَانَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، وَإِلَى جَمِيْعِ إِخْوَانِهِ مِنَ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَالْأَوْلِيَاءِ وَالشُّهَدَاءِ وَالصَّالِحِيْنَ وَالصَّحَابَةِ وَالتَّابِعِيْنَ وَالْعُلَمَاءِ الْعَامِلِيْنَ وَالْمُصَنِّفِيْنَ الْمُخْلِصِيْنَ وَجَمِيْعِ الْمُجَاهِدِيْنَ فِي سَبِيْلِ اللهِ رَبِّ الْعَلَمِيْنَ وَالْمَلَائِكَةِ الْمُقَرَّبِيْنَ، خُصُوْصًا إِلَى سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيْلَانِيّ، ثُمَّ إِلَى أَرْوَاحِ جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ وَمَغَارِبِهَا بَرِّهَا وَبَحْرِهَا خُصُوْصًا إِلَى آبَائِنَا وَاُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا، وَنَخَصُّ خَصُوْصًا إِلَى مَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ وَلِأَجْلِهِ",
+        "latin": "Allâhumma taqabbal wa aushil tsawâba mâ qara'nâhu minal-qur'anil-'adhîmi wa mâ hallalnâ wa mâ sabbaḫnâ wa mâstaghfarnâ wa mâ shallainâ 'alâ sayyidinâ Muḫammadin shallallâhu 'alaihi wa sallamâ hadiyyatan wâshilatan wa raḫmatan nâzilatan wa barakatan syâmilatan ilâ ḫadlrati ḫabîbinâ wa syafî'nâ wa qurrati a'yuninâ sayyidinâ wa maulana Muḫammadin shallallâhu 'alaihi wa sallamâ, wa ilâ jamî'i ikhwânihi minal-anbiyâ'i wal-mursalîna wal-auliyâ'i wasy-syuhadâ' wash-shaliḫina wash-shaḫâbati wat-tâbi'înâ wal-'ulamâ'il-'âmilîna wal-mushannifînal-mukhlashîna wa jamî'il-mujâhidînâ fî sabîlillâhi rabbil-'âlamîna wal-malâ'ikatil-muqarrabîna, khusûshan ilâ sayyidinâsy-Syaikhi Abdil-Qâdir al-Jîlâni, tsumma ilâ arwâhi jami'i ahlil-qubûri minal-muslimînâ wal-muslimâti wal-mu'minînâ wal-mu'minâti min masyâriqil-ardli wa maghâribihâ barrihâ wa baḫrihâ khusushan ilâ âbâ'inâ wa ummahâtinâ wa ajdâdinâ wa jaddâtinâ, wa nakhushshu khusûshan ilâ man ijtama'nâ hahunâ bisababihi wa liajlihi",
+        "id": "Ya Allah, terimalah dan sampaikanlah pahala ayat-ayat Quranul 'adhim yang telah kami baca, tahlil kami, tasbih dan istighfar kami, dan bacaan shalawat kami kepada penghulu kami Nabi Muhammad dan kepada keluarganya. Sebagai hadiah yang bisa sampai, rahmat yang turun, dan berkah yang cukup kepada kekasih kami, penolong dan buah mata kami, penghulu dan pemimpin kami, yaitu Nabi Muhammad, kepada semua temannya dari para Nabi dan para Utusan, kepada para wali, pahlawan yang gugur (Syuhada), orang-orang yang salih, para sahabat, dan tabi'in; kepada para ulama yang mengamalkan ilmunya, para pengarang yang ikhlas, kepada semua pejuang di jalan Allah; dan kepada para Malaikat muqarrabin, terutama Syekh Abdul Qadir al-Jilani, kemudian kepada ahli kubur, muslim yang laki-laki dan yang perempuan, mukmin yang laki-laki dan yang perempuan, dari dunia timur dan barat di darat dan di laut, terutama lagi kepada bapak-bapak kami, ibu-ibu kami, nenek-nenek kami, lebih terutama lagi kepada orang yang menyebabkan kami sekalian berkumpul di sini."
+    },
+    {
+        "n": 23,
+        "section": "Doa Rahmat",
+        "ar": "اَللّٰهُمَّ اغْفِرْ لَهُمْ وَارْحَمْهُمْ وَعَافِهِمْ وَاعْفُ عَنْهُمْ، اَللّٰهُمَّ أَنْزِلِ الرَّحْمَةَ وَالْمَغْفِرَةَ عَلَى أَهْلِ الْقُبُوْرِ مِنْ أَهْلِ لَا إِلٰهَ إِلَّا اللهُ مُحَمَّدٌ رَّسُوْلُ اللهِ",
+        "latin": "Allâhummaghfirlahum warḫamhum wa 'âfihim wa'fu 'anhum, allâhumma anzilir-raḫmata wal-maghfirata 'alâ-ahlil-qubûri min-ahli lâ ilâha illallâhu muḫammadur-rasûlullahi",
+        "id": "Ya Allah ampunilah mereka, kasihanilah mereka, dan maafkanlah mereka. Ya Allah turunkanlah rahmat, dan ampunan kepada ahlul kubur yang ahli mengucapkan Laa ilaaha illaallah, Muhammadur rasulullah."
+    },
+    {
+        "n": 24,
+        "section": "Doa Penutup",
+        "ar": "رَبَّنَا أَرِنَا الْحَقَّ حَقًّا وَّارْزُقْنَا اتِّبَاعَهُ، وَأَرِنَا الْبَاطِلَ بَاطِلًا وَّارْزُقْنَا اجْتِنَابَهُ، رَبَّنَا اٰتِنَا فِي الدُّنْيَا حَسَنَةً وَّفِي الْآخِرَةِ حَسَنَةً وَّقِنَا عَذَابَ النَّارِ، سُبْحَانَ رَبِّكَ رَبِّ الْعِزَّةِ عَمَّا يَصِفُوْنَ وَسَلَامٌ عَلَى الْمُرْسَلِيْنَ وَالْحَمْدُ لِلّٰهِ رَبِّ الْعَلَمِيْنَ",
+        "latin": "Rabbanâ arinâl-ḫaqqa ḫaqqan warzuqnât-tibâ'ah, wa arinâl-bâthila bâthilan warzuqnâj tinâbah. Rabbanâ âtinâ fid-dunyâ ḫasanatan wa fil-âkhirati ḫasanatan wa qinâ 'adzaban-nâr. Subḫâna-rabbika rabbil-'izzati 'ammâ yashifun, wa salamun 'alal-mursalîn, wal-ḫamdulillâhi rabbil-'âlamîn.",
+        "id": "Tuhan kami, tunjukkanlah kami kebenaran dengan jelas, jadikanlah kami pengikutnya, tunjukkanlah kami perkara batil dengan jelas, dan jadikanlah kami menjauhinya. Tuhan kami, berikanlah kami kebaikan di dunia dan kebaikan di akhirat, dan jagalah kami dari siksa api neraka. Semoga keselamatan tetap melimpahkan kepada para Utusannya dan segala puji bagi Allah Tuhan seru sekalian Alam."
+    }
+]
+
+data = {
+    "title": "Tahlil Al-Akmal",
+    "source": "quran.nu.or.id",
+    "count": len(bait),
+    "bait": bait
+}
+
+OUT.parent.mkdir(parents=True, exist_ok=True)
+OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+sections = [b["section"] for b in bait]
+print(f"Count: {len(bait)}")
+print(f"Sections: {sections}")
+print(f"Written to: {OUT}")
