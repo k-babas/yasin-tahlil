@@ -491,7 +491,7 @@ document.addEventListener('keydown', e=>{ if(e.key==='/' && document.activeEleme
 
 
 // --- Audio: everyayah per-ayah ---
-const QARI_MAP={'Misyari Rashid':'Alafasy_128kbps','Abdurrahman As-Sudais':'Abdurrahman_As-Sudais_192kbps','Maher Al-Muaiqly':'MaherAlMuaiqly_128kbps'};
+const QARI_MAP={'Misyari Rashid':'Alafasy_128kbps','Abdurrahman As-Sudais':'Abdurrahmaan_As-Sudais_64kbps','Maher Al-Muaiqly':'Maher_AlMuaiqly_64kbps'};
 let audioEl=null, curAyah=null;
 function ensureAudio(){ if(audioEl) return audioEl; audioEl=document.getElementById('audioPlayer'); if(!audioEl){ audioEl=document.createElement('audio'); audioEl.id='audioPlayer'; audioEl.preload='none'; audioEl.controls=true; audioEl.style.cssText='position:fixed;left:50%;transform:translateX(-50%);bottom:92px;z-index:35;width:min(420px,calc(100vw - 24px));display:none;border-radius:999px;box-shadow:var(--shadow-lg)'; document.body.appendChild(audioEl); } audioEl.onended=()=>{ curAyah=null; document.querySelectorAll('.ayah .mini.playing').forEach(b=>{b.classList.remove('playing'); b.innerHTML='<svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 8l6 4-6 4z"/></svg>'}); audioEl.style.display='none'; }; audioEl.onerror=()=>{ const st=document.getElementById('audioStatus'); if(st) st.textContent='Gagal memuat audio — coba qari lain'; }; return audioEl; }
 function playAyah(no, btn){
