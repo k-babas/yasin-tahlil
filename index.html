@@ -218,8 +218,8 @@ button{font-family:inherit}
   .basmalah{font-size:18px}
   .meta-grid{grid-template-columns:1fr 1fr;gap:8px}
   .meta{padding:10px}
-  .cta-row{flex-direction:column}
-  .cta-primary,.cta-secondary{width:100%;min-width:0;height:44px;font-size:13px}
+  .cta-row{flex-direction:column;gap:10px}
+  .cta-primary,.cta-secondary{width:100%;min-width:0;height:48px;font-size:13.5px}
   .filterbar{margin:10px 12px 0;max-width:calc(100% - 24px);gap:8px}
   .search{height:40px;flex-basis:100%}
   .filter-pills{width:100%;overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap;padding-bottom:2px}
@@ -240,17 +240,17 @@ button{font-family:inherit}
 }
 
 
-/* === Modern motion === */
+/* === Modern motion — unhurried / mahal === */
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 @keyframes scaleIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
-.panel.active{animation:fadeIn .32s ease}
-.cover-card{animation:scaleIn .55s cubic-bezier(.16,1,.3,1) both}
-.ayah{opacity:0;animation:fadeInUp .5s cubic-bezier(.16,1,.3,1) both}
+.panel.active{animation:fadeIn .52s ease}
+.cover-card{animation:scaleIn .92s cubic-bezier(.16,1,.3,1) both}
+.ayah{opacity:0;animation:fadeInUp .72s cubic-bezier(.16,1,.3,1) both}
 .ayah.in-view{opacity:1}
-.rail-btn,.dock button,.pill,.segtabs button,.btn-accent,.cta-primary,.cta-secondary{transition:transform .18s, background .18s, color .18s, box-shadow .18s}
+.rail-btn,.dock button,.pill,.segtabs button,.btn-accent,.cta-primary,.cta-secondary{transition:transform .26s cubic-bezier(.16,1,.3,1), background .26s, color .26s, box-shadow .26s, border-color .26s}
 .rail-btn:active,.dock button:active,.pill:active{transform:scale(.96)}
-.cover-media .photo-frame img{transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.cover-media .photo-frame img{transition:transform .85s cubic-bezier(.16,1,.3,1)}
 .cover-media .photo-frame:hover img{transform:scale(1.03)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
@@ -427,7 +427,7 @@ function refresh(){
   render();
 }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function ayahCard(a){ const L=prefs.showLatin&&!prefs.arabOnly,T=prefs.showTerjemah&&!prefs.arabOnly; const latinHtml = (a.latin && L) ? `<div class="latin">${esc(a.latin)}</div>` : ''; const terjHtml = T ? `<div class="terjemah">${esc(a.terjemah)}</div>` : ''; return `<article class="ayah" id="ayah-${a.no}"><div class="ayah-side"><div class="num">${String(a.no).padStart(2,'0')}</div><small>YASIN<br>36:${a.no}</small><div style="display:flex;flex-direction:column;gap:6px;margin-top:auto"><button class="mini" title="Salin link" onclick="navigator.clipboard.writeText(location.href.split('#')[0]+'#ayah-${a.no}')"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button><button class="mini" title="Play murottal" onclick="playAyah(a.no, this)"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 8l6 4-6 4z"/></svg></button></div></div><div class="ayah-body"><div class="arab">${a.arab}</div>${latinHtml}${terjHtml}<div class="ayah-foot"><span class="tag">Ayat ${a.no} \u2022 Utsmani</span><span class="tag" style="background:var(--gold-soft)">Kemenag</span><span style="margin-left:auto;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 6v6l4 2"/></svg> ${esc(prefs.qari)}</span></div></div></article>`}
+function ayahCard(a){ const L=prefs.showLatin&&!prefs.arabOnly,T=prefs.showTerjemah&&!prefs.arabOnly; const latinHtml = (a.latin && L) ? `<div class="latin">${esc(a.latin)}</div>` : ''; const terjHtml = T ? `<div class="terjemah">${esc(a.terjemah)}</div>` : ''; return `<article class="ayah" id="ayah-${a.no}"><div class="ayah-side"><div class="num">${String(a.no).padStart(2,'0')}</div><small>YASIN<br>36:${a.no}</small><div style="display:flex;flex-direction:column;gap:6px;margin-top:auto"><button class="mini" title="Salin link" onclick="navigator.clipboard.writeText(location.href.split('#')[0]+'#ayah-${a.no}')"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button><button class="mini" title="Play murottal" onclick="playAyah(${a.no}, this)"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 8l6 4-6 4z"/></svg></button></div></div><div class="ayah-body"><div class="arab">${a.arab}</div>${latinHtml}${terjHtml}<div class="ayah-foot"><span class="tag">Ayat ${a.no} \u2022 Utsmani</span><span class="tag" style="background:var(--gold-soft)">Kemenag</span><span style="margin-left:auto;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 6v6l4 2"/></svg> ${esc(prefs.qari)}</span></div></div></article>`}
 function tahlilCard(t){ const cnt=t.counter?`<span class="tag">${t.counter}\u00D7</span>`:''; const btn=t.counter?`<div style="margin-top:12px;display:flex;gap:8px;align-items:center"><button style="height:32px;padding:0 14px;border-radius:999px;border:none;background:var(--accent);color:var(--paper);font-weight:700;cursor:pointer" data-m="${t.counter}" data-n="0" onclick="let m=parseInt(this.dataset.m),n=parseInt(this.dataset.n)+1;n=Math.min(m,n);this.dataset.n=n;this.textContent=n+' / '+m+(n===m?' \u2713':'')">0 / ${t.counter}</button><span style="font-size:12px;color:var(--muted)">tap untuk hitung</span></div>`:''; return `<article class="ayah" style="grid-template-columns:1fr"><div class="ayah-body"><div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap"><span style="background:var(--ink);color:var(--paper);font-size:11px;font-weight:700;padding:6px 10px;border-radius:999px">${esc(t.judul)}</span>${cnt}</div><div class="arab">${t.arab}</div><div class="latin">${esc(t.latin)}</div><div class="terjemah">${esc(t.terjemah)}</div>${btn}</div></article>`}
 function render(){
   const q=document.getElementById('search')?.value.toLowerCase().trim()||'';
@@ -448,8 +448,8 @@ function render(){
     if(TAHLIL.length===0) lt.innerHTML=`<div style="background:var(--card);border:1px solid #e2a3a3;border-radius:16px;padding:18px;color:#8b2c2c;text-align:center">Gagal memuat Tahlil.</div>`;
     else lt.innerHTML=TAHLIL.map(tahlilCard).join('');
   }
-  // stagger reveal
-  requestAnimationFrame(()=>{ document.querySelectorAll('.ayah').forEach((el,i)=>{ el.style.animationDelay=(Math.min(i*0.04,0.6))+'s'; el.classList.add('in-view'); }); });
+  // stagger reveal — unhurried
+  requestAnimationFrame(()=>{ document.querySelectorAll('.ayah').forEach((el,i)=>{ el.style.animationDelay=(Math.min(i*0.06,0.8))+'s'; el.classList.add('in-view'); }); });
   const ld=document.getElementById('list-doa');
   if(ld){
     if(DOA.length===0 && TAHLIL.length>0) ld.innerHTML=`<div style="text-align:center;padding:24px;color:var(--muted)">Tidak ada doa (filter section mengandung 'Doa')</div>`;
