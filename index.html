@@ -61,7 +61,7 @@ button{font-family:inherit}
 .cover-wrap{padding:16px 20px 0;max-width:100%}
 .cover-card{
   background:var(--card);border:1px solid var(--line);border-radius:26px;overflow:hidden;
-  display:grid;grid-template-columns:380px 1fr;min-height:520px;box-shadow:var(--shadow)
+  display:grid;grid-template-columns:380px 1fr;min-height:580px;box-shadow:var(--shadow)
 }
 .cover-media{
   background:var(--paper-2);border-right:1px solid var(--line);padding:18px;
@@ -75,7 +75,7 @@ button{font-family:inherit}
 .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
 .eyebrow i{width:22px;height:1px;background:var(--line);display:block}
 .photo-frame{
-  aspect-ratio:4/5;border-radius:22px;overflow:hidden;background:var(--card);border:1px solid var(--line);
+  aspect-ratio:3/4;min-height:420px;border-radius:22px;overflow:hidden;background:var(--card);border:1px solid var(--line);
   position:relative;display:grid;place-items:center
 }
 .photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
@@ -131,6 +131,7 @@ button{font-family:inherit}
 .ayah-side small{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--muted);text-align:center;line-height:1.3}
 .mini{width:32px;height:32px;border-radius:10px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;cursor:pointer;color:var(--muted)}
 .ayah-body{padding:16px 16px 14px;min-width:0;overflow:hidden}
+.arab{font-family:'Scheherazade New',serif}
 .ayah-body .arab{font-family:'Scheherazade New',serif;font-size:var(--arab);line-height:2;text-align:right;direction:rtl;color:var(--ink);overflow-wrap:break-word;word-break:break-word}
 .latin{margin-top:10px;font-size:13px;color:var(--muted);font-style:italic;line-height:1.7;background:var(--card-2);border:1px dashed var(--line);border-radius:12px;padding:8px 10px;overflow-wrap:break-word}
 .terjemah{margin-top:10px;font-size:13.5px;color:var(--ink);line-height:1.65;border-left:2px solid var(--accent);padding-left:12px;opacity:.92;overflow-wrap:break-word}
@@ -211,7 +212,7 @@ button{font-family:inherit}
   .cover-wrap{padding:10px 12px 0}
   .cover-card{grid-template-columns:1fr;border-radius:18px;min-height:auto}
   .cover-media{border-right:none;border-bottom:1px solid var(--line);padding:14px}
-  .photo-frame{aspect-ratio:4/3}
+  .photo-frame{aspect-ratio:3/4;min-height:320px}
   .cover-body{padding:16px 14px}
   .name{font-size:28px}
   .basmalah{font-size:18px}
@@ -295,10 +296,10 @@ button{font-family:inherit}
               <div class="placeholder" id="photoPh">
                 <div class="ph-icon"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="5"/><path d="M12 13v-2"/></svg></div>
                 <div style="font-size:13px;font-weight:600;color:var(--ink)">Foto almarhumah</div>
-                <div style="font-size:11.5px;margin-top:4px">Memuat assets/img/portrait.jpg</div>
+                <div style="font-size:11.5px;margin-top:4px">Memuat foto</div>
               </div>
             </div>
-            <div class="hint">Foto <code>assets/img/portrait.jpg</code> — ganti file di repo untuk update permanen.</div>
+            
           </div>
           <!-- BODY / DATA -->
           <div class="cover-body">
@@ -311,28 +312,27 @@ button{font-family:inherit}
               <div class="meta"><div class="meta-label"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg> Wafat</div><div class="meta-value" id="vWafat">22 September 2026</div><div class="meta-sub" id="vWafatHijri">37 tahun • Semoga husnul khatimah</div></div>
               <div class="meta"><div class="meta-label"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Lahir</div><div class="meta-value" id="vLahir">19 Juli 1989</div><div class="meta-sub">Kelahiran almarhumah</div></div>
               <div class="meta"><div class="meta-label"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Keluarga</div><div class="meta-value" id="vTempat">Muhamad Sidik A.</div><div class="meta-sub" id="vAlamat">Suami • Salsabila Cahyaningtyas Elyasid (Anak)</div></div>
-              <div class="meta"><div class="meta-label"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 6v6l4 2"/></svg> Doa</div><div class="meta-value" style="font-family:'Scheherazade New',serif;font-size:15px">اللَّهُمَّ ارْحَمْهَا</div><div class="meta-sub">Ya Allah rahmatilah dia</div></div>
+              <div class="meta"><div class="meta-label"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 6v6l4 2"/></svg> Doa</div><div class="meta-value arab" style="font-size:15px">اللَّهُمَّ ارْحَمْهَا</div><div class="meta-sub">Ya Allah rahmatilah dia</div></div>
             </div>
             <div class="quote" id="vQuote">“إِنَّا لِلَّهِ وَإِنَّآ إِلَيْهِ رَاجِعُونَ — اللَّهُمَّ ارْحَمْهَا بِرَحْمَتِكَ الوَاسِعَةِ، وَأَغْفِرْ لَهَا بِفَضْلِكَ.”<small>Dipersembahkan suami untuk almarhumah Lia Aris Tiarawati • Al-Fatihah dihadiahkan untuk beliau</small></div>
             <div class="cta-row">
               <button class="cta-primary" data-jump="yasin"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Buka Yasin</button>
               <button class="cta-secondary" data-jump="tahlil"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> Buka Tahlil</button></div>
-            <div class="cta-note">Halaman awal tampil pertama. Edit data di <code>index.html → let cover</code> & foto <code>assets/img/portrait.jpg</code>.</div>
+            
           </div>
         </div>
       </div>
-      <div class="hero-mini" style="margin-top:12px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg> <div><b>Data real:</b> Lia Aris Tiarawati (19 Juli 1989 – 22 September 2026) • <span class="js-name">Lia Aris Tiarawati</span>. <small style="color:var(--muted)">Foto assets/img/portrait.jpg • Yasin 83 ayat • Tahlil 24 bait.</small></div></div>
     </div>
 
     <!-- YASIN -->
     <div class="panel" id="panel-yasin">
-      <div class="hero-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> <div><b>Dihadiahkan untuk <span class="js-name">Lia Aris Tiarawati</span></b> <small> • Surah Yasin 36 — 83 ayat</small></div><button class="btn-sm" data-jump="cover" style="margin-left:auto"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> Kembali ke awal</button></div>
-      <div class="filterbar"><label class="search"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="search" placeholder="Cari ayat: &quot;hikmah&quot;, &quot;rahmat&quot;"><kbd>/</kbd></label><div class="filter-pills"><button class="pill on" id="pillLatin"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7V5h16v2"/><path d="M9 20h6"/><path d="M12 5v15"/></svg> Latin</button><button class="pill on" id="pillTerjemah"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M12 2a15 15 0 0 0 0 20"/></svg> Terjemah</button><button class="pill" id="pillArabOnly">Arab saja</button></div></div>
+      <div class="hero-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> <div><b>Dihadiahkan untuk <span class="js-name">Lia Aris Tiarawati</span></b> <small> • Surah Yasin 36 — 83 ayat</small></div></div>
+      <div class="filterbar"><label class="search"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="search" placeholder="Cari ayat: &quot;hikmah&quot;, &quot;rahmat&quot;"><kbd>/</kbd></label><div class="filter-pills"><button class="pill on" id="pillLatin"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 20L12 4L17 20"/><path d="M9 15H15"/></svg> Latin</button><button class="pill on" id="pillTerjemah"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M12 2a15 15 0 0 0 0 20"/><path d="M16 8l2 2-2 2"/><path d="M8 16l-2-2 2-2"/></svg> Terjemah</button><button class="pill" id="pillArabOnly"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 20c1.5-2 2.5-4 2.5-7V8"/><path d="M12 13c0 2 1.2 3.5 3 4"/><path d="M14 8v5"/><circle cx="16" cy="6" r="1.2" fill="currentColor" stroke="none"/></svg> Arab saja</button></div></div>
       <div id="audioStatus" style="margin:8px 20px 0;font-size:11px;color:var(--muted);min-height:14px"></div><div class="list" id="list-yasin"><div style="text-align:center;padding:24px;color:var(--muted)">Memuat 83 ayat Yasin…</div></div>
     </div>
-    <div class="panel" id="panel-tahlil"><div class="hero-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> <div><b>Tahlil untuk <span class="js-name">Lia Aris Tiarawati</span></b> <small> • 24 bait • Urutan NU lengkap</small></div><button class="btn-sm" data-jump="cover" style="margin-left:auto"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> Awal</button></div><div class="list" id="list-tahlil"><div style="text-align:center;padding:24px;color:var(--muted)">Memuat 24 bait Tahlil…</div></div></div>
-    <div class="panel" id="panel-doa"><div class="hero-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11V9a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v2"/><path d="M15 11V9a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v2"/><path d="M8 12c0 2.2 1.8 4 4 4s4-1.8 4-4"/><path d="M12 7v5"/></svg> <div><b>Doa penutup</b> <small> • Untuk <span class="js-name">Lia Aris Tiarawati</span> • Filter section mengandung 'Doa' (4 bait)</small></div><button class="btn-sm" data-jump="cover" style="margin-left:auto">Kembali</button></div><div class="list" id="list-doa"><div style="text-align:center;padding:24px;color:var(--muted)">Memuat doa…</div></div></div>
-    <div class="panel" id="panel-info"><div class="info-grid"><div class="info-card"><h4>Tentang</h4><p>Halaman mengenang <b>Lia Aris Tiarawati</b> (19 Juli 1989 – 22 September 2026). Dipersembahkan suami <b>Muhamad Sidik A.</b> untuk almarhumah. Foto <code>assets/img/portrait.jpg</code>. Data Yasin 83 ayat & Tahlil 24 bait di-fetch dari JSON.</p></div><div class="info-card"><h4>Urutan Tahlil NU (24 bait)</h4><p>Pembukaan → Al-Ikhlas 3× → Al-Falaq → An-Nas → Al-Fatihah → Al-Baqarah → Ayat Kursi → Istighfar 3× → Dzikir → Tahlil 100× → Sholawat → Tasbih → Doa Pembuka/Taqabbal/Rahmat/Penutup (4 doa).</p></div></div><div class="hero-mini" style="margin:12px 20px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg> <div><b>Sumber data:</b> <code>assets/data/yasin.json</code> (Kemenag) & <code>tahlil.json</code> (quran.nu.or.id). Latin kosong pada Yasin (ditampilkan hanya jika ada).</div></div></div>
+    <div class="panel" id="panel-tahlil"><div class="hero-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> <div><b>Tahlil untuk <span class="js-name">Lia Aris Tiarawati</span></b> <small> • 27 bait *</small></div></div><div class="filterbar" style="justify-content:center"><div class="filter-pills"><button class="pill on" id="pillLatinT"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 20L12 4L17 20"/><path d="M9 15H15"/></svg> Latin</button><button class="pill on" id="pillTerjemahT"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M12 2a15 15 0 0 0 0 20"/><path d="M16 8l2 2-2 2"/><path d="M8 16l-2-2 2-2"/></svg> Terjemah</button><button class="pill" id="pillArabOnlyT"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 20c1.5-2 2.5-4 2.5-7V8"/><path d="M12 13c0 2 1.2 3.5 3 4"/><path d="M14 8v5"/><circle cx="16" cy="6" r="1.2" fill="currentColor" stroke="none"/></svg> Arab saja</button></div></div><div class="list" id="list-tahlil"><div style="text-align:center;padding:24px;color:var(--muted)">Memuat 24 bait Tahlil…</div></div></div>
+    <div class="panel" id="panel-doa"><div class="hero-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11V9a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v2"/><path d="M15 11V9a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v2"/><path d="M8 12c0 2.2 1.8 4 4 4s4-1.8 4-4"/><path d="M12 7v5"/></svg> <div><b>Doa penutup</b> <small> • Untuk <span class="js-name">Lia Aris Tiarawati</span> • 4 doa penutup</small></div></div><div class="list" id="list-doa"><div style="text-align:center;padding:24px;color:var(--muted)">Memuat doa…</div></div></div>
+    <div class="panel" id="panel-info"><div class="info-grid"><div class="info-card"><h4>Tentang</h4><p>Halaman mengenang <b>Lia Aris Tiarawati</b> (19 Juli 1989 – 22 September 2026). Dipersembahkan suami <b>Muhamad Sidik A.</b> untuk almarhumah. Data Yasin 83 ayat & Tahlil 24 bait di-fetch dari JSON.</p></div><div class="info-card"><h4>Urutan Tahlil NU (24 bait)</h4><p>Pembukaan → Al-Ikhlas 3× → Al-Falaq → An-Nas → Al-Fatihah → Al-Baqarah → Ayat Kursi → Istighfar 3× → Dzikir → Tahlil 100× → Sholawat → Tasbih → Doa Pembuka/Taqabbal/Rahmat/Penutup (4 doa).</p></div></div><div class="hero-mini" style="margin:12px 20px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg> <div><b>Sumber data:</b> Kemenag & quran.nu.or.id • 83 ayat • 27 bait Tahlil</div></div></div>
   </main>
 
   <aside class="right" aria-label="Pengaturan"><div class="right-head"><h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h4"/><path d="M12 6h8"/><circle cx="8" cy="6" r="2"/><path d="M3 12h10"/><path d="M18 12h2"/><circle cx="15" cy="12" r="2"/><path d="M3 18h6"/><path d="M14 18h6"/><circle cx="10" cy="18" r="2"/></svg> Pengaturan</h3><span class="kbd">⌘,</span></div><div class="right-body" id="rightBody"></div></aside>
@@ -392,10 +392,10 @@ function settingsHTML(){
   <div class="group" style="border-color:var(--accent);background:var(--card)">
     <h4><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Data Almarhumah — via kode</h4>
     <div style="font-size:13px;line-height:1.6;color:var(--ink)"><b>${cover.name}</b>${cover.bin?' '+cover.bin:''}<br><span style="color:var(--muted)">${cover.lahir} — ${cover.wafat} • ${cover.wafatHijri}</span><br><span style="color:var(--muted)">${cover.tempat} • ${cover.alamat}</span></div>
-    <div class="hint" style="margin-top:8px">Edit permanen di <code>index.html → let cover</code> & foto <code>assets/img/portrait.jpg</code>. Tidak ada editor web.</div>
+    <div class="hint" style="margin-top:8px">Edit via kode di <code>index.html</code>.</div>
   </div>
   <div class="group">
-    <h4><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7V5h16v2"/><path d="M9 20h6"/><path d="M12 5v15"/></svg> Tampilan bacaan</h4>
+    <h4><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 20L12 4L17 20"/><path d="M9 15H15"/></svg> Tampilan bacaan</h4>
     <div class="row"><div><div class="row-label">Latin</div><div class="row-hint">Transliterasi</div></div><div class="switch ${prefs.showLatin?'on':''}" data-toggle="showLatin"><i></i></div></div>
     <div class="row"><div><div class="row-label">Terjemah</div><div class="row-hint">Kemenag RI</div></div><div class="switch ${prefs.showTerjemah?'on':''}" data-toggle="showTerjemah"><i></i></div></div>
     <div class="row"><div><div class="row-label">Arab saja</div><div class="row-hint">Sembunyikan latin & terjemah</div></div><div class="switch ${prefs.arabOnly?'on':''}" data-toggle="arabOnly"><i></i></div></div>
@@ -423,6 +423,9 @@ function refresh(){
   document.getElementById('pillLatin')?.classList.toggle('on',prefs.showLatin);
   document.getElementById('pillTerjemah')?.classList.toggle('on',prefs.showTerjemah);
   document.getElementById('pillArabOnly')?.classList.toggle('on',prefs.arabOnly);
+  document.getElementById('pillLatinT')?.classList.toggle('on',prefs.showLatin);
+  document.getElementById('pillTerjemahT')?.classList.toggle('on',prefs.showTerjemah);
+  document.getElementById('pillArabOnlyT')?.classList.toggle('on',prefs.arabOnly);
   render();
 }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -475,6 +478,10 @@ document.getElementById('search')?.addEventListener('input', render);
 document.getElementById('pillLatin')?.addEventListener('click', ()=>{prefs.showLatin=!prefs.showLatin; if(prefs.showLatin)prefs.arabOnly=false; refresh()});
 document.getElementById('pillTerjemah')?.addEventListener('click', ()=>{prefs.showTerjemah=!prefs.showTerjemah; if(prefs.showTerjemah)prefs.arabOnly=false; refresh()});
 document.getElementById('pillArabOnly')?.addEventListener('click', ()=>{prefs.arabOnly=!prefs.arabOnly; if(prefs.arabOnly){prefs.showLatin=false;prefs.showTerjemah=false} refresh()});
+// Tahlil pills sync same prefs
+document.getElementById('pillLatinT')?.addEventListener('click', ()=>{prefs.showLatin=!prefs.showLatin; if(prefs.showLatin)prefs.arabOnly=false; refresh()});
+document.getElementById('pillTerjemahT')?.addEventListener('click', ()=>{prefs.showTerjemah=!prefs.showTerjemah; if(prefs.showTerjemah)prefs.arabOnly=false; refresh()});
+document.getElementById('pillArabOnlyT')?.addEventListener('click', ()=>{prefs.arabOnly=!prefs.arabOnly; if(prefs.arabOnly){prefs.showLatin=false;prefs.showTerjemah=false} refresh()});
 document.getElementById('btnMinus')?.addEventListener('click', ()=>{prefs.fontScale=Math.max(-2,prefs.fontScale-1);refresh()});
 document.getElementById('btnPlus')?.addEventListener('click', ()=>{prefs.fontScale=Math.min(4,prefs.fontScale+1);refresh()});
 document.getElementById('btnTheme')?.addEventListener('click', ()=>{prefs.theme=prefs.theme==='dark'?'light':'dark';refresh()});
