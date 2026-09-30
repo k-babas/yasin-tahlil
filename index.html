@@ -1,52 +1,548 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="light">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Yasin &amp; Tahlil untuk mengenang Lia Aris Tiarawati (1989-2026)">
-  <meta name="theme-color" content="#12211A">
-  <title>Yasin &amp; Tahlil — Lia Aris Tiarawati</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Yasin & Tahlil untuk mengenang Lia Aris Tiarawati (1989–2026) — Dipersembahkan suami untuk almarhumah">
+<meta name="theme-color" content="#143D2A">
+<title>Yasin & Tahlil — Lia Aris Tiarawati</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&family=Scheherazade+New:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+:root{
+  --paper:#F6F1E7; --paper-2:#EDE8DC; --ink:#111410; --muted:#8B8F8B; --line:#E6E1D6;
+  --card:#FFFFFF; --card-2:#FAF8F3; --accent:#143D2A; --accent-hover:#0F2E1F; --accent-soft:#E4EDE7;
+  --gold:#C9A86A; --gold-soft:#F5ECD8; --r-lg:22px; --r-md:16px; --r-pill:999px;
+  --arab:31px; --base:14.5px; --shadow:0 8px 32px rgba(17,20,16,.07); --shadow-lg:0 16px 48px rgba(17,20,16,.12);
+}
+[data-theme="dark"]{
+  --paper:#0D1712; --paper-2:#122017; --ink:#EDEEE8; --muted:#8A9A8E; --line:#1E3326;
+  --card:#17291E; --card-2:#1B3023; --accent:#D9EADF; --accent-hover:#C5DDCB; --accent-soft:#1E3326;
+  --gold:#C9A86A; --gold-soft:#2A2416;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+body{font-family:'Instrument Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:var(--base);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100vw}
+button{font-family:inherit}
+.ico{width:18px;height:18px;display:inline-block;flex-shrink:0}
+.ico-14{width:14px;height:14px}
+.ico-20{width:20px;height:20px}
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="assets/css/theme.css">
-  <link rel="stylesheet" href="assets/css/main.css">
+/* SHELL */
+.shell{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:76px 1fr 340px;min-height:100vh;max-width:100vw;overflow:hidden}
+.rail{position:sticky;top:0;height:100vh;border-right:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;align-items:center;padding:18px 0 16px;gap:8px;z-index:20}
+.rail-logo{width:40px;height:40px;background:var(--accent);color:var(--paper);border-radius:12px;display:grid;place-items:center;font-family:'Instrument Serif',serif;font-size:18px}
+[data-theme="dark"] .rail-logo{background:var(--accent);color:#0D1712}
+.rail-nav{display:flex;flex-direction:column;gap:6px;margin-top:18px;flex:1}
+.rail-btn{width:44px;height:44px;border-radius:14px;border:1px solid transparent;background:transparent;display:grid;place-items:center;cursor:pointer;color:var(--muted);transition:.18s}
+.rail-btn:hover{background:var(--card-2);border-color:var(--line);color:var(--ink)}
+.rail-btn.active{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+[data-theme="dark"] .rail-btn.active{color:#0D1712}
+.rail-foot{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.rail-foot .rail-btn{border-color:var(--line);background:var(--card-2)}
+
+.main{min-width:0;max-width:100%;overflow:hidden;padding-bottom:40px}
+.topbar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 92%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:14px 20px;max-width:100%}
+.topbar-left{min-width:0;flex:1}
+.crumb{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.crumb b{color:var(--ink);font-weight:600}
+.topbar h1{font-family:'Instrument Serif',serif;font-size:26px;font-weight:400;letter-spacing:-.03em;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar h1 i{font-style:italic;color:var(--muted);font-weight:400}
+.top-actions{margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
+.ctrl{height:36px;border:1px solid var(--line);background:var(--card);border-radius:var(--r-pill);display:flex;align-items:center;gap:0;padding:2px;flex-shrink:0}
+.ctrl button{height:30px;padding:0 12px;border:none;background:transparent;border-radius:var(--r-pill);cursor:pointer;font-size:12.5px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:6px}
+.btn-icon{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;cursor:pointer;color:var(--ink);flex-shrink:0}
+.btn-accent{height:36px;padding:0 16px;border-radius:var(--r-pill);border:none;background:var(--accent);color:var(--paper);font-weight:600;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0}
+[data-theme="dark"] .btn-accent{color:#0D1712}
+.btn-accent .label-long{display:inline}
+.btn-accent .label-short{display:none}
+
+/* ===== COVER / HALAMAN AWAL ===== */
+.cover-wrap{padding:16px 20px 0;max-width:100%}
+.cover-card{
+  background:var(--card);border:1px solid var(--line);border-radius:26px;overflow:hidden;
+  display:grid;grid-template-columns:380px 1fr;min-height:520px;box-shadow:var(--shadow)
+}
+.cover-media{
+  background:var(--paper-2);border-right:1px solid var(--line);padding:18px;
+  display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden
+}
+.cover-media::after{
+  content:"";position:absolute;inset:auto -30% -30% -30%;height:55%;
+  background:radial-gradient(420px 220px at 50% 0%, color-mix(in srgb,var(--accent) 10%, transparent), transparent 70%);
+  pointer-events:none
+}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+.eyebrow i{width:22px;height:1px;background:var(--line);display:block}
+.photo-frame{
+  aspect-ratio:4/5;border-radius:22px;overflow:hidden;background:var(--card);border:1px solid var(--line);
+  position:relative;display:grid;place-items:center
+}
+.photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-frame .placeholder{padding:24px;text-align:center;color:var(--muted)}
+.photo-frame .ph-icon{width:56px;height:56px;border-radius:16px;background:var(--paper-2);border:1px solid var(--line);display:grid;place-items:center;margin:0 auto 10px;color:var(--muted)}
+.photo-actions{display:flex;gap:8px;flex-wrap:wrap;position:relative}
+.btn-sm{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-size:12.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--ink);white-space:nowrap}
+.btn-sm.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+[data-theme="dark"] .btn-sm.primary{background:var(--accent);color:#0D1712;border-color:var(--accent)}
+.hint{font-size:11.5px;color:var(--muted);line-height:1.5}
+
+.cover-body{padding:22px 22px 18px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.basmalah{font-family:'Scheherazade New',serif;font-size:22px;text-align:center;color:var(--muted);letter-spacing:.02em}
+.istirja{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:center;border:1px solid var(--line);background:var(--card-2);border-radius:999px;padding:7px 10px;width:fit-content;margin:0 auto}
+.name{font-family:'Instrument Serif',serif;font-size:36px;line-height:.95;letter-spacing:-.04em;text-align:center;overflow-wrap:break-word}
+.name em{font-style:italic;color:var(--muted);font-weight:400}
+.bin{font-size:13px;color:var(--muted);text-align:center;margin-top:-6px}
+.divider-soft{height:1px;background:var(--line);margin:4px 0}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.meta{border:1px solid var(--line);background:var(--card-2);border-radius:16px;padding:12px;min-width:0}
+.meta-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px}
+.meta-value{font-size:13.5px;font-weight:600;margin-top:4px;overflow-wrap:break-word}
+.meta-sub{font-size:11.5px;color:var(--muted);margin-top:2px}
+.quote{border-left:2px solid var(--accent);padding:10px 12px;background:var(--card-2);border-radius:12px;font-size:13px;color:var(--ink);line-height:1.6}
+.quote small{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
+.cta-primary{flex:1;min-width:160px;height:46px;border-radius:999px;border:none;background:var(--accent);color:var(--paper);font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+[data-theme="dark"] .cta-primary{color:#0D1712}
+.cta-secondary{height:46px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:600;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.cta-note{font-size:11px;color:var(--muted);text-align:center}
+
+/* FILTER etc */
+.filterbar{margin:16px 20px 0;display:flex;gap:10px;align-items:center;flex-wrap:wrap;max-width:calc(100% - 40px)}
+.search{flex:1;min-width:0;height:42px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-pill);display:flex;align-items:center;gap:10px;padding:0 14px;min-width:160px}
+.search input{flex:1;border:none;outline:none;background:transparent;font-size:13.5px;color:var(--ink);min-width:0}
+.search kbd{font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--paper-2);border:1px solid var(--line);padding:3px 6px;border-radius:6px;color:var(--muted);flex-shrink:0}
+.filter-pills{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pill{height:42px;padding:0 14px;border-radius:var(--r-pill);border:1px solid var(--line);background:var(--card);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;color:var(--muted);white-space:nowrap}
+.pill.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+[data-theme="dark"] .pill.on{background:var(--accent);color:#0D1712;border-color:var(--accent)}
+.segwrap{margin:16px 20px 0;max-width:calc(100% - 40px);overflow:hidden}
+.segtabs{display:inline-flex;max-width:100%;background:var(--card);border:1px solid var(--line);border-radius:var(--r-pill);padding:3px;gap:3px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.segtabs::-webkit-scrollbar{display:none}
+.segtabs button{height:34px;padding:0 16px;border-radius:var(--r-pill);border:none;background:transparent;font-size:13px;font-weight:600;cursor:pointer;color:var(--muted);display:flex;align-items:center;gap:7px;white-space:nowrap;flex-shrink:0}
+.segtabs button.active{background:var(--ink);color:var(--paper)}
+[data-theme="dark"] .segtabs button.active{background:var(--accent);color:#0D1712}
+.list{padding:14px 20px 20px;display:flex;flex-direction:column;gap:12px;max-width:100%}
+.ayah{display:grid;grid-template-columns:72px 1fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;max-width:100%}
+.ayah-side{background:var(--card-2);border-right:1px solid var(--line);padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.num{width:36px;height:36px;border-radius:12px;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600}
+[data-theme="dark"] .num{background:var(--accent);color:#0D1712}
+.ayah-side small{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--muted);text-align:center;line-height:1.3}
+.mini{width:32px;height:32px;border-radius:10px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;cursor:pointer;color:var(--muted)}
+.ayah-body{padding:16px 16px 14px;min-width:0;overflow:hidden}
+.ayah-body .arab{font-family:'Scheherazade New',serif;font-size:var(--arab);line-height:2;text-align:right;direction:rtl;color:var(--ink);overflow-wrap:break-word;word-break:break-word}
+.latin{margin-top:10px;font-size:13px;color:var(--muted);font-style:italic;line-height:1.7;background:var(--card-2);border:1px dashed var(--line);border-radius:12px;padding:8px 10px;overflow-wrap:break-word}
+.terjemah{margin-top:10px;font-size:13.5px;color:var(--ink);line-height:1.65;border-left:2px solid var(--accent);padding-left:12px;opacity:.92;overflow-wrap:break-word}
+.ayah-foot{margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px}
+.tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--paper-2);border:1px solid var(--line);padding:4px 8px;border-radius:999px;white-space:nowrap}
+
+/* HERO mini for inner pages */
+.hero-mini{margin:16px 20px 0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hero-mini b{font-size:13px}
+.hero-mini small{color:var(--muted);font-size:11px}
+
+/* RIGHT */
+.right{position:sticky;top:0;height:100vh;overflow:auto;border-left:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;max-width:100%}
+.right-head{padding:18px 18px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--card);z-index:2}
+.right-head h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:8px}
+.right-body{padding:16px 16px 24px;display:flex;flex-direction:column;gap:16px}
+.group{border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--card-2);max-width:100%}
+.group h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none;padding-bottom:0}
+.row:first-of-type{padding-top:0}
+.row-label{font-size:13px;font-weight:600}
+.row-hint{font-size:11.5px;color:var(--muted)}
+.field{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.field label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 12px;font-size:13px;color:var(--ink);outline:none}
+.field textarea{min-height:72px;resize:vertical}
+.switch{width:44px;height:26px;background:var(--line);border-radius:999px;position:relative;cursor:pointer;transition:.2s;border:1px solid var(--line);flex-shrink:0}
+.switch i{position:absolute;top:2px;left:2px;width:20px;height:20px;background:var(--card);border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:.2s}
+.switch.on{background:var(--accent);border-color:var(--accent)}
+.switch.on i{transform:translateX(18px)}
+.range{display:flex;align-items:center;gap:10px;width:100%}
+.range input{flex:1;accent-color:var(--accent);min-width:0}
+.qaris{display:flex;flex-direction:column;gap:8px}
+.qari{padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card);display:flex;align-items:center;gap:10px;cursor:pointer;min-width:0}
+.qari.active{border-color:var(--accent);background:var(--accent-soft)}
+.play-mini{margin-left:auto;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;flex-shrink:0}
+
+/* DOCK */
+.bottom-dock{display:none}
+.dock{position:fixed;left:50%;transform:translateX(-50%);bottom:max(14px, env(safe-area-inset-bottom));z-index:30;background:var(--ink);border:1px solid color-mix(in srgb,var(--ink) 85%, white);border-radius:999px;padding:6px;display:flex;gap:6px;box-shadow:var(--shadow-lg);max-width:calc(100vw - 16px);overflow:hidden}
+.dock button{height:44px;padding:0 14px;border-radius:999px;border:none;background:transparent;color:rgba(255,255,255,.72);font-weight:600;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:.18s;white-space:nowrap;flex-shrink:0}
+.dock button.active{background:var(--paper);color:var(--ink)}
+.dock-cta{height:44px;width:44px;min-width:44px;border-radius:50%;background:var(--gold);color:#1A1200;border:none;display:grid;place-items:center;cursor:pointer;flex-shrink:0}
+.panel{display:none}
+.panel.active{display:block}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 20px;max-width:100%}
+.info-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0;overflow-wrap:break-word}
+.kbd{font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--paper-2);border:1px solid var(--line);padding:3px 7px;border-radius:7px;color:var(--muted);white-space:nowrap}
+.scrim{display:none;position:fixed;inset:0;background:rgba(0,0,0,.32);backdrop-filter:blur(2px);z-index:40}
+.scrim.show{display:block}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(380px,92vw);background:var(--card);border-left:1px solid var(--line);z-index:45;transform:translateX(100%);transition:.24s;overflow:auto;display:flex;flex-direction:column}
+.drawer.show{transform:translateX(0)}
+
+@media(max-width:1100px){
+  .shell{grid-template-columns:76px 1fr}
+  .right{display:none}
+  .cover-card{grid-template-columns:320px 1fr}
+}
+@media(max-width:760px){
+  .shell{grid-template-columns:1fr}
+  .rail{display:none}
+  .main{padding-bottom:96px}
+  .topbar{padding:10px 12px;gap:10px}
+  .topbar h1{font-size:18px;white-space:normal;line-height:1.1}
+  .crumb{font-size:9.5px}
+  .top-actions{gap:6px}
+  .ctrl{height:34px}
+  .btn-accent{height:34px;padding:0 12px;font-size:12px}
+  .btn-accent .label-long{display:none}
+  .btn-accent .label-short{display:inline}
+  .cover-wrap{padding:10px 12px 0}
+  .cover-card{grid-template-columns:1fr;border-radius:18px;min-height:auto}
+  .cover-media{border-right:none;border-bottom:1px solid var(--line);padding:14px}
+  .photo-frame{aspect-ratio:4/3}
+  .cover-body{padding:16px 14px}
+  .name{font-size:28px}
+  .basmalah{font-size:18px}
+  .meta-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .meta{padding:10px}
+  .cta-primary{height:44px;font-size:13px}
+  .cta-secondary{height:44px}
+  .filterbar{margin:10px 12px 0;max-width:calc(100% - 24px);gap:8px}
+  .search{height:40px;flex-basis:100%}
+  .filter-pills{width:100%;overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap;padding-bottom:2px}
+  .filter-pills::-webkit-scrollbar{display:none}
+  .pill{height:36px;padding:0 12px;font-size:12.5px;flex-shrink:0}
+  .segwrap{margin:10px 12px 0;max-width:calc(100% - 24px)}
+  .segtabs{width:100%}
+  .list{padding:10px 12px 20px}
+  .ayah{grid-template-columns:52px 1fr;border-radius:18px}
+  .ayah-body{padding:12px}
+  .bottom-dock{display:block}
+  .info-grid{grid-template-columns:1fr;padding:10px 12px}
+  .dock{padding:5px;gap:4px}
+  .dock button{height:40px;padding:0 11px;font-size:12px}
+}
+@media(max-width:380px){
+  .meta-grid{grid-template-columns:1fr}
+  .cta-row{flex-direction:column}
+}
+
+</style>
 </head>
 <body>
+<div class="shell">
+  <aside class="rail" aria-label="Navigasi">
+    <div class="rail-logo">ي</div>
+    <nav class="rail-nav">
+      <button class="rail-btn active" data-tab="cover" aria-label="Halaman Awal"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></button>
+      <button class="rail-btn" data-tab="yasin" aria-label="Yasin"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8"/><path d="M8 11h8"/></svg></button>
+      <button class="rail-btn" data-tab="tahlil" aria-label="Tahlil"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg></button>
+      <button class="rail-btn" data-tab="doa" aria-label="Doa"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/></svg></button>
+      <button class="rail-btn" data-tab="info" aria-label="Info"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></button>
+    </nav>
+    <div class="rail-foot"><button class="rail-btn" id="railSettings" aria-label="Pengaturan"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6 1.65 1.65 0 0 1-2 0 1.65 1.65 0 0 0-1-.6 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 6.6 15a1.65 1.65 0 0 0-.6-1 1.65 1.65 0 0 1 0-2c.18-.38.38-.77.6-1A1.65 1.65 0 0 0 6.27 9l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 10.88 6.6c.38-.22.77-.42 1.12-.6a1.65 1.65 0 0 1 2 0c.35.18.74.38 1 .6A1.65 1.65 0 0 0 16.72 6.27l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 11c-.22.38-.42.77-.6 1a1.65 1.65 0 0 1 0 2c.18.35.38.74.6 1z"/></svg></button></div>
+  </aside>
 
-  <!-- Theme toggle -->
-  <button id="theme-toggle" class="theme-toggle" aria-label="Ganti tema" type="button">
-    <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="5"/>
-      <line x1="12" y1="1" x2="12" y2="3"/>
-      <line x1="12" y1="21" x2="12" y2="23"/>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-      <line x1="1" y1="12" x2="3" y2="12"/>
-      <line x1="21" y1="12" x2="23" y2="12"/>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-    </svg>
-    <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-    </svg>
-  </button>
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="crumb"><span>YASIN & TAHLIL</span> <span style="opacity:.4">—</span> <b id="crumbTitle">Halaman Awal</b></div>
+        <h1 id="topTitle">Mengirim doa <i>untuk almarhumah</i></h1>
+      </div>
+      <div class="top-actions">
+        <div class="ctrl"><button id="btnMinus"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg> A-</button><button id="btnPlus"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> A+</button></div>
+        <button class="btn-icon" id="btnTheme" aria-label="Tema"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="btn-accent" id="btnMasuk"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg> <span class="label-long">Masuk Bacaan</span><span class="label-short">Masuk</span></button>
+      </div>
+    </header>
 
-  <!-- Cover View -->
-  <main id="cover-view" role="main" aria-label="Halaman utama">
-    <div id="cover-content"></div>
+    <!-- COVER PANEL — HALAMAN AWAL -->
+    <div class="panel active" id="panel-cover">
+      <div class="cover-wrap">
+        <div class="cover-card" id="coverCard">
+          <!-- MEDIA / FOTO -->
+          <div class="cover-media">
+            <div class="eyebrow"><i></i> Dipersembahkan suami untuk almarhumah</div>
+            <div class="photo-frame" id="photoFrame">
+              <img id="photoImg" alt="Foto Lia Aris Tiarawati" style="display:none">
+              <div class="placeholder" id="photoPh">
+                <div class="ph-icon"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="5"/><path d="M12 13v-2"/></svg></div>
+                <div style="font-size:13px;font-weight:600;color:var(--ink)">Foto almarhumah</div>
+                <div style="font-size:11.5px;margin-top:4px">Memuat assets/img/portrait.jpg</div>
+              </div>
+            </div>
+            <div class="photo-actions">
+              <label class="btn-sm primary" for="photoInput"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg> Ganti foto</label>
+              <input id="photoInput" type="file" accept="image/*" hidden>
+              <button class="btn-sm" id="btnHapusFoto"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg> Hapus</button>
+            </div>
+            <div class="hint">Foto default <code>assets/img/portrait.jpg</code> (58KB). Ganti via tombol di atas — tersimpan lokal (localStorage yt_cover). Untuk permanen, ganti file portrait.jpg.</div>
+          </div>
+          <!-- BODY / DATA -->
+          <div class="cover-body">
+            <div class="basmalah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <div class="istirja">إِنَّا لِلَّهِ وَإِنَّآ إِلَيْهِ رَاجِعُونَ — Inna lillahi wa inna ilaihi raji'un</div>
+            <div class="name" id="vName">Lia Aris Tiarawati <em></em></div>
+            <div class="bin" id="vBin">Dipersembahkan suami untuk almarhumah</div>
+            <div class="divider-soft"></div>
+            <div class="meta-grid">
+              <div class="meta"><div class="meta-label"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg> Wafat</div><div class="meta-value" id="vWafat">22 September 2026</div><div class="meta-sub" id="vWafatHijri">37 tahun • Semoga husnul khatimah</div></div>
+              <div class="meta"><div class="meta-label"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Lahir</div><div class="meta-value" id="vLahir">19 Juli 1989</div><div class="meta-sub">Kelahiran almarhumah</div></div>
+              <div class="meta"><div class="meta-label"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Keluarga</div><div class="meta-value" id="vTempat">Muhamad Sidik A.</div><div class="meta-sub" id="vAlamat">Suami • Salsabila Cahyaningtyas Elyasid (Anak)</div></div>
+              <div class="meta"><div class="meta-label"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 6v6l4 2"/></svg> Doa</div><div class="meta-value" style="font-family:'Scheherazade New',serif;font-size:15px">اللَّهُمَّ ارْحَمْهَا</div><div class="meta-sub">Ya Allah rahmatilah dia</div></div>
+            </div>
+            <div class="quote" id="vQuote">“إِنَّا لِلَّهِ وَإِنَّآ إِلَيْهِ رَاجِعُونَ — اللَّهُمَّ ارْحَمْهَا بِرَحْمَتِكَ الوَاسِعَةِ، وَأَغْفِرْ لَهَا بِفَضْلِكَ.”<small>Dipersembahkan suami untuk almarhumah Lia Aris Tiarawati • Al-Fatihah dihadiahkan untuk beliau</small></div>
+            <div class="cta-row">
+              <button class="cta-primary" data-jump="yasin"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Buka Yasin</button>
+              <button class="cta-secondary" data-jump="tahlil"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> Buka Tahlil</button>
+              <button class="cta-secondary" id="btnEditCover"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg> Edit data</button>
+            </div>
+            <div class="cta-note">Halaman awal ini tampil pertama kali. Data & foto bisa diubah di <b>Pengaturan → Data Almarhum</b>. Data fetch dari <code>yasin.json (83 ayat)</code> & <code>tahlil.json (24 bait)</code>.</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-mini" style="margin-top:12px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg> <div><b>Data real:</b> Lia Aris Tiarawati (19 Juli 1989 – 22 September 2026) • <span class="js-name">Lia Aris Tiarawati</span>. <small style="color:var(--muted)">Foto assets/img/portrait.jpg • Yasin 83 ayat • Tahlil 24 bait.</small></div></div>
+    </div>
+
+    <!-- YASIN -->
+    <div class="panel" id="panel-yasin">
+      <div class="hero-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> <div><b>Dihadiahkan untuk <span class="js-name">Lia Aris Tiarawati</span></b> <small> • Surah Yasin 36 — 83 ayat</small></div><button class="btn-sm" data-jump="cover" style="margin-left:auto"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> Kembali ke awal</button></div>
+      <div class="filterbar"><label class="search"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="search" placeholder="Cari ayat: &quot;hikmah&quot;, &quot;rahmat&quot;"><kbd>/</kbd></label><div class="filter-pills"><button class="pill on" id="pillLatin"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7V5h16v2"/><path d="M9 20h6"/><path d="M12 5v15"/></svg> Latin</button><button class="pill on" id="pillTerjemah"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M12 2a15 15 0 0 0 0 20"/></svg> Terjemah</button><button class="pill" id="pillArabOnly">Arab saja</button></div></div>
+      <div class="segwrap"><div class="segtabs" role="tablist"><button class="active" data-tab="yasin"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Yasin</button><button data-tab="tahlil"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> Tahlil</button><button data-tab="doa"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/></svg> Doa</button><button data-tab="info"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg> Info</button></div></div>
+      <div class="list" id="list-yasin"><div style="text-align:center;padding:24px;color:var(--muted)">Memuat 83 ayat Yasin…</div></div>
+    </div>
+    <div class="panel" id="panel-tahlil"><div class="hero-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> <div><b>Tahlil untuk <span class="js-name">Lia Aris Tiarawati</span></b> <small> • 24 bait • Urutan NU lengkap</small></div><button class="btn-sm" data-jump="cover" style="margin-left:auto"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> Awal</button></div><div class="list" id="list-tahlil"><div style="text-align:center;padding:24px;color:var(--muted)">Memuat 24 bait Tahlil…</div></div></div>
+    <div class="panel" id="panel-doa"><div class="hero-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/></svg> <div><b>Doa penutup</b> <small> • Untuk <span class="js-name">Lia Aris Tiarawati</span> • Filter section mengandung 'Doa' (4 bait)</small></div><button class="btn-sm" data-jump="cover" style="margin-left:auto">Kembali</button></div><div class="list" id="list-doa"><div style="text-align:center;padding:24px;color:var(--muted)">Memuat doa…</div></div></div>
+    <div class="panel" id="panel-info"><div class="info-grid"><div class="info-card"><h4>Tentang</h4><p>Halaman mengenang <b>Lia Aris Tiarawati</b> (19 Juli 1989 – 22 September 2026). Dipersembahkan suami <b>Muhamad Sidik A.</b> untuk almarhumah. Foto <code>assets/img/portrait.jpg</code>. Data Yasin 83 ayat & Tahlil 24 bait di-fetch dari JSON.</p></div><div class="info-card"><h4>Urutan Tahlil NU (24 bait)</h4><p>Pembukaan → Al-Ikhlas 3× → Al-Falaq → An-Nas → Al-Fatihah → Al-Baqarah → Ayat Kursi → Istighfar 3× → Dzikir → Tahlil 100× → Sholawat → Tasbih → Doa Pembuka/Taqabbal/Rahmat/Penutup (4 doa).</p></div></div><div class="hero-mini" style="margin:12px 20px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg> <div><b>Sumber data:</b> <code>assets/data/yasin.json</code> (Kemenag) & <code>tahlil.json</code> (quran.nu.or.id). Latin kosong pada Yasin (ditampilkan hanya jika ada).</div></div></div>
   </main>
 
-  <!-- Booklet View (lazy) -->
-  <div id="booklet-view" class="hidden" role="main" aria-label="Buku Yasin dan Tahlil">
-    <div id="booklet-content"></div>
-  </div>
+  <aside class="right" aria-label="Pengaturan"><div class="right-head"><h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6 1.65 1.65 0 0 1-2 0 1.65 1.65 0 0 0-1-.6 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 6.6 15a1.65 1.65 0 0 0-.6-1 1.65 1.65 0 0 1 0-2c.18-.38.38-.77.6-1A1.65 1.65 0 0 0 6.27 9l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 10.88 6.6c.38-.22.77-.42 1.12-.6a1.65 1.65 0 0 1 2 0c.35.18.74.38 1 .6A1.65 1.65 0 0 0 16.72 6.27l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 11c-.22.38-.42.77-.6 1a1.65 1.65 0 0 1 0 2c.18.35.38.74.6 1z"/></svg> Pengaturan</h3><span class="kbd">⌘,</span></div><div class="right-body" id="rightBody"></div></aside>
+</div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Pengaturan"><div class="right-head"><h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6 1.65 1.65 0 0 1-2 0 1.65 1.65 0 0 0-1-.6 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 6.6 15a1.65 1.65 0 0 0-.6-1 1.65 1.65 0 0 1 0-2c.18-.38.38-.77.6-1A1.65 1.65 0 0 0 6.27 9l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 10.88 6.6c.38-.22.77-.42 1.12-.6a1.65 1.65 0 0 1 2 0c.35.18.74.38 1 .6A1.65 1.65 0 0 0 16.72 6.27l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 11c-.22.38-.42.77-.6 1a1.65 1.65 0 0 1 0 2c.18.35.38.74.6 1z"/></svg> Pengaturan</h3><button class="btn-icon" id="btnCloseDrawer"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><div class="right-body" id="drawerBody"></div></aside>
+<div class="bottom-dock"><div class="dock" role="tablist">
+  <button class="active" data-tab="cover"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg> Awal</button>
+  <button data-tab="yasin"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Yasin</button>
+  <button data-tab="tahlil"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> Tahlil</button>
+  <button data-tab="doa"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/></svg> Doa</button>
+  <button class="dock-cta" id="dockSettings" aria-label="Pengaturan"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6 1.65 1.65 0 0 1-2 0 1.65 1.65 0 0 0-1-.6 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 6.6 15a1.65 1.65 0 0 0-.6-1 1.65 1.65 0 0 1 0-2c.18-.38.38-.77.6-1A1.65 1.65 0 0 0 6.27 9l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 10.88 6.6c.38-.22.77-.42 1.12-.6a1.65 1.65 0 0 1 2 0c.35.18.74.38 1 .6A1.65 1.65 0 0 0 16.72 6.27l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 11c-.22.38-.42.77-.6 1a1.65 1.65 0 0 1 0 2c.18.35.38.74.6 1z"/></svg></button>
+</div></div>
+<script>
+let YASIN=[],TAHLIL=[],DOA=[];
+const _saved = JSON.parse(localStorage.getItem('yt_cover')||'null');
+let cover = (_saved && _saved.name==="H. Ahmad Syafi'i") ? null : _saved;
+cover = cover || {
+  name:"Lia Aris Tiarawati", bin:"", family:"Dipersembahkan suami untuk almarhumah",
+  wafat:"22 September 2026", wafatHijri:"37 tahun \u2022 Semoga husnul khatimah",
+  acara:"Tahlil & Doa Bersama", acaraSub:"Untuk almarhumah Lia Aris Tiarawati",
+  tempat:"Muhamad Sidik A.", alamat:"Suami \u2022 Salsabila Cahyaningtyas Elyasid (Anak)",
+  lahir:"19 Juli 1989", quote:"\u201C\u0625\u0650\u0646\u064E\u0651\u0627 \u0644\u0650\u0644\u064E\u0651\u0647\u0650 \u0648\u064E\u0625\u0650\u0646\u064E\u0651\u0622 \u0625\u0650\u0644\u064E\u064A\u0652\u0647\u0650 \u0631\u064E\u0627\u062C\u0650\u0639\u064F\u0648\u0646\u064E \u2014 \u0627\u0644\u0644\u064E\u0651\u0647\u064F\u0645\u064E\u0651 \u0627\u0631\u0652\u062D\u064E\u0645\u0652\u0647\u064E\u0627 \u0628\u0650\u0631\u064E\u062D\u0652\u0645\u064E\u062A\u0650\u0643\u064E \u0627\u0644\u0648\u064E\u0627\u0633\u0650\u0639\u064E\u0629\u0650\u060C \u0648\u064E\u0623\u064E\u063A\u0652\u0641\u0650\u0631\u0652 \u0644\u064E\u0647\u064E\u0627 \u0628\u0650\u0641\u064E\u0636\u0652\u0644\u0650\u0643\u064E\u060C\u201D",
+  photo:"assets/img/portrait.jpg"
+};
+// migrate old photo empty -> set default portrait
+if(!cover.photo) cover.photo="assets/img/portrait.jpg";
+let prefs={showLatin:true,showTerjemah:true,arabOnly:false,fontScale:0,theme:'light',qari:'Misyari Rashid'};
 
-  <!-- App -->
-  <script type="module" src="assets/js/app.js"></script>
+function saveCover(){ localStorage.setItem('yt_cover', JSON.stringify(cover)); }
+function applyCover(){
+  const vName=document.getElementById('vName');
+  if(vName) vName.innerHTML = cover.bin ? `${cover.name} <em>${cover.bin}</em>` : cover.name;
+  const m={
+    vBin:cover.family, vWafat:cover.wafat, vWafatHijri:cover.wafatHijri,
+    vAcara:cover.acara, vAcaraSub:cover.acaraSub, vTempat:cover.tempat,
+    vAlamat:cover.alamat, vLahir:cover.lahir
+  };
+  for(const [id,val] of Object.entries(m)){
+    const el=document.getElementById(id);
+    if(el) el.textContent=val;
+  }
+  const q=document.getElementById('vQuote');
+  if(q && q.firstChild) q.firstChild.textContent = cover.quote + ' ';
+  document.querySelectorAll('.js-name').forEach(el=> el.textContent = cover.name);
+  const img=document.getElementById('photoImg'), ph=document.getElementById('photoPh');
+  if(img && ph){
+    if(cover.photo){ img.src=cover.photo; img.alt="Foto "+cover.name; img.style.display='block'; ph.style.display='none';
+      img.onerror=()=>{ img.style.display='none'; ph.style.display='block'; ph.querySelector('div:nth-child(2)').textContent='Gagal memuat foto'; };
+    } else { img.style.display='none'; ph.style.display='block'; }
+  }
+}
+function applyTheme(){ if(prefs.theme==='dark') document.documentElement.setAttribute('data-theme','dark'); else document.documentElement.removeAttribute('data-theme'); document.documentElement.style.setProperty('--base',(14.5+prefs.fontScale*1.2)+'px'); document.documentElement.style.setProperty('--arab',(31+prefs.fontScale*2)+'px'); }
+
+function settingsHTML(){
+  return `
+  <div class="group" style="border-color:var(--accent);background:var(--card)">
+    <h4><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg> Data Almarhumah \u2014 Halaman Awal</h4>
+    <div class="field"><label>Nama lengkap</label><input id="fName" value="${cover.name}"></div>
+    <div class="field"><label>Bin / Binti (kosongkan jika tidak ada)</label><input id="fBin" value="${cover.bin}" placeholder="binti ..."></div>
+    <div class="field"><label>Keluarga / Dedication</label><input id="fFamily" value="${cover.family}"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="field"><label>Tgl Wafat</label><input id="fWafat" value="${cover.wafat}"></div>
+      <div class="field"><label>Hijriyah / Usia</label><input id="fWafatHijri" value="${cover.wafatHijri}"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="field"><label>Acara</label><input id="fAcara" value="${cover.acara}"></div>
+      <div class="field"><label>Waktu Acara</label><input id="fAcaraSub" value="${cover.acaraSub}"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="field"><label>Keluarga utama</label><input id="fTempat" value="${cover.tempat}"></div>
+      <div class="field"><label>Anggota keluarga</label><input id="fAlamat" value="${cover.alamat}"></div>
+    </div>
+    <div class="field"><label>Lahir</label><input id="fLahir" value="${cover.lahir}"></div>
+    <div class="field"><label>Doa / Quote</label><textarea id="fQuote">${cover.quote}</textarea></div>
+    <div class="field"><label>URL Foto</label><input id="fPhotoUrl" value="${cover.photo.startsWith('data:')?'':cover.photo}" placeholder="assets/img/portrait.jpg atau https://..."></div>
+    <button class="btn-sm primary" id="btnSimpanCover" style="width:100%;justify-content:center;margin-top:10px;height:40px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg> Simpan Halaman Awal</button>
+    <div class="hint" style="margin-top:6px">Tersimpan di localStorage. Default foto <code>assets/img/portrait.jpg</code>.</div>
+  </div>
+  <div class="group">
+    <h4><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7V5h16v2"/><path d="M9 20h6"/><path d="M12 5v15"/></svg> Tampilan bacaan</h4>
+    <div class="row"><div><div class="row-label">Latin</div><div class="row-hint">Transliterasi</div></div><div class="switch ${prefs.showLatin?'on':''}" data-toggle="showLatin"><i></i></div></div>
+    <div class="row"><div><div class="row-label">Terjemah</div><div class="row-hint">Kemenag RI</div></div><div class="switch ${prefs.showTerjemah?'on':''}" data-toggle="showTerjemah"><i></i></div></div>
+    <div class="row"><div><div class="row-label">Arab saja</div><div class="row-hint">Sembunyikan latin & terjemah</div></div><div class="switch ${prefs.arabOnly?'on':''}" data-toggle="arabOnly"><i></i></div></div>
+    <div class="row" style="flex-direction:column;align-items:stretch;gap:8px"><div style="display:flex;justify-content:space-between;align-items:center"><span class="row-label">Ukuran font</span><span class="kbd">${prefs.fontScale>0?'+'+prefs.fontScale:prefs.fontScale}</span></div><div class="range"><button class="btn-icon" data-act="minus" style="width:32px;height:32px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></button><input type="range" min="-2" max="4" value="${prefs.fontScale}" id="sRange"><button class="btn-icon" data-act="plus" style="width:32px;height:32px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div></div>
+  </div>
+  <div class="group">
+    <h4><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Tema & Suara</h4>
+    <div class="row"><div><div class="row-label">Mode gelap</div><div class="row-hint">Malam hari</div></div><div class="switch ${prefs.theme==='dark'?'on':''}" data-toggle="theme"><i></i></div></div>
+    <div style="margin-top:8px"><div class="row-label" style="margin-bottom:8px">Qari murottal</div><div class="qaris">${['Misyari Rashid','Abdurrahman As-Sudais','Maher Al-Muaiqly'].map(n=>`<div class="qari ${prefs.qari===n?'active':''}" data-qari="${n}"><div style="width:32px;height:32px;border-radius:50%;background:var(--paper-2);border:1px solid var(--line);display:grid;place-items:center"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M10 8l6 4-6 4z"/></svg></div><div><b>${n}</b><br><small>everyayah.com</small></div><div class="play-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 8l6 4-6 4z"/></svg></div></div>`).join('')}</div></div>
+  </div>`;
+}
+function bindSettings(root){
+  root.querySelectorAll('.switch[data-toggle]').forEach(sw=>{ sw.onclick=()=>{ const k=sw.dataset.toggle; if(k==='theme')prefs.theme=prefs.theme==='dark'?'light':'dark'; else if(k==='arabOnly'){prefs.arabOnly=!prefs.arabOnly; if(prefs.arabOnly){prefs.showLatin=false;prefs.showTerjemah=false}} else prefs[k]=!prefs[k]; if(k==='showLatin'&&prefs.showLatin)prefs.arabOnly=false; if(k==='showTerjemah'&&prefs.showTerjemah)prefs.arabOnly=false; refresh(); }});
+  const r=root.querySelector('#sRange'); if(r) r.oninput=e=>{prefs.fontScale=parseInt(e.target.value,10);refresh()};
+  root.querySelectorAll('[data-act="minus"]').forEach(b=> b.onclick=()=>{prefs.fontScale=Math.max(-2,prefs.fontScale-1);refresh()});
+  root.querySelectorAll('[data-act="plus"]').forEach(b=> b.onclick=()=>{prefs.fontScale=Math.min(4,prefs.fontScale+1);refresh()});
+  root.querySelectorAll('.qari').forEach(el=> el.onclick=()=>{prefs.qari=el.dataset.qari;refresh()});
+  const btn=root.querySelector('#btnSimpanCover');
+  if(btn) btn.onclick=()=>{
+    cover.name=root.querySelector('#fName').value.trim()||cover.name;
+    cover.bin=root.querySelector('#fBin').value.trim();
+    cover.family=root.querySelector('#fFamily').value.trim();
+    cover.wafat=root.querySelector('#fWafat').value.trim();
+    cover.wafatHijri=root.querySelector('#fWafatHijri').value.trim();
+    cover.acara=root.querySelector('#fAcara').value.trim();
+    cover.acaraSub=root.querySelector('#fAcaraSub').value.trim();
+    cover.tempat=root.querySelector('#fTempat').value.trim();
+    cover.alamat=root.querySelector('#fAlamat').value.trim();
+    cover.lahir=root.querySelector('#fLahir').value.trim();
+    cover.quote=root.querySelector('#fQuote').value.trim();
+    const url=root.querySelector('#fPhotoUrl').value.trim();
+    if(url) cover.photo=url;
+    saveCover(); applyCover(); refresh();
+    btn.textContent='\u2713 Tersimpan'; setTimeout(()=> btn.textContent='Simpan Halaman Awal',1400);
+  };
+}
+function refresh(){
+  applyTheme(); applyCover();
+  const rb=document.getElementById('rightBody'), db=document.getElementById('drawerBody');
+  if(rb){ rb.innerHTML=settingsHTML(); bindSettings(rb); }
+  if(db){ db.innerHTML=settingsHTML(); bindSettings(db); }
+  document.getElementById('pillLatin')?.classList.toggle('on',prefs.showLatin);
+  document.getElementById('pillTerjemah')?.classList.toggle('on',prefs.showTerjemah);
+  document.getElementById('pillArabOnly')?.classList.toggle('on',prefs.arabOnly);
+  render();
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function ayahCard(a){ const L=prefs.showLatin&&!prefs.arabOnly,T=prefs.showTerjemah&&!prefs.arabOnly; const latinHtml = (a.latin && L) ? `<div class="latin">${esc(a.latin)}</div>` : ''; const terjHtml = T ? `<div class="terjemah">${esc(a.terjemah)}</div>` : ''; return `<article class="ayah" id="ayah-${a.no}"><div class="ayah-side"><div class="num">${String(a.no).padStart(2,'0')}</div><small>YASIN<br>36:${a.no}</small><div style="display:flex;flex-direction:column;gap:6px;margin-top:auto"><button class="mini" title="Salin link" onclick="navigator.clipboard.writeText(location.href.split('#')[0]+'#ayah-${a.no}')"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button><button class="mini" title="Play"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 8l6 4-6 4z"/></svg></button></div></div><div class="ayah-body"><div class="arab">${a.arab}</div>${latinHtml}${terjHtml}<div class="ayah-foot"><span class="tag">Ayat ${a.no} \u2022 Utsmani</span><span class="tag" style="background:var(--gold-soft)">Kemenag</span><span style="margin-left:auto;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 6v6l4 2"/></svg> ${esc(prefs.qari)}</span></div></div></article>`}
+function tahlilCard(t){ const cnt=t.counter?`<span class="tag">${t.counter}\u00D7</span>`:''; const btn=t.counter?`<div style="margin-top:12px;display:flex;gap:8px;align-items:center"><button style="height:32px;padding:0 14px;border-radius:999px;border:none;background:var(--accent);color:var(--paper);font-weight:700;cursor:pointer" data-m="${t.counter}" data-n="0" onclick="let m=parseInt(this.dataset.m),n=parseInt(this.dataset.n)+1;n=Math.min(m,n);this.dataset.n=n;this.textContent=n+' / '+m+(n===m?' \u2713':'')">0 / ${t.counter}</button><span style="font-size:12px;color:var(--muted)">tap untuk hitung</span></div>`:''; return `<article class="ayah" style="grid-template-columns:1fr"><div class="ayah-body"><div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap"><span style="background:var(--ink);color:var(--paper);font-size:11px;font-weight:700;padding:6px 10px;border-radius:999px">${esc(t.judul)}</span>${cnt}</div><div class="arab">${t.arab}</div><div class="latin">${esc(t.latin)}</div><div class="terjemah">${esc(t.terjemah)}</div>${btn}</div></article>`}
+function render(){
+  const q=document.getElementById('search')?.value.toLowerCase().trim()||'';
+  // YASIN
+  const ly=document.getElementById('list-yasin');
+  if(ly){
+    if(YASIN.length===0){
+      ly.innerHTML=`<div style="background:var(--card);border:1px solid #e2a3a3;border-radius:16px;padding:18px;color:#8b2c2c;text-align:center">Gagal memuat Yasin. Pastikan <code>assets/data/yasin.json</code> tersedia dan halaman dijalankan via http(s) (bukan file://). Coba refresh.</div>`;
+    } else {
+      let y=YASIN;
+      if(q) y=YASIN.filter(a=>(a.latin||'').toLowerCase().includes(q)||(a.terjemah||'').toLowerCase().includes(q)||a.arab.includes(q));
+      ly.innerHTML=y.map(ayahCard).join('')+`<div style="text-align:center;padding:12px;color:var(--muted);font-size:12px">Menampilkan ${y.length} dari ${YASIN.length} ayat${q?' \u2022 filter: "'+esc(q)+'"':''}</div>`;
+      if(y.length===0) ly.innerHTML=`<div style="text-align:center;padding:24px;color:var(--muted)">Tidak ada ayat cocok untuk "${esc(q)}"</div>` + ly.innerHTML;
+    }
+  }
+  const lt=document.getElementById('list-tahlil');
+  if(lt){
+    if(TAHLIL.length===0) lt.innerHTML=`<div style="background:var(--card);border:1px solid #e2a3a3;border-radius:16px;padding:18px;color:#8b2c2c;text-align:center">Gagal memuat Tahlil.</div>`;
+    else lt.innerHTML=TAHLIL.map(tahlilCard).join('');
+  }
+  const ld=document.getElementById('list-doa');
+  if(ld){
+    if(DOA.length===0 && TAHLIL.length>0) ld.innerHTML=`<div style="text-align:center;padding:24px;color:var(--muted)">Tidak ada doa (filter section mengandung 'Doa')</div>`;
+    else if(DOA.length===0) ld.innerHTML=`<div style="background:var(--card);border:1px solid #e2a3a3;border-radius:16px;padding:18px;color:#8b2c2c;text-align:center">Gagal memuat Doa.</div>`;
+    else ld.innerHTML=DOA.map(tahlilCard).join('');
+  }
+}
+
+function activate(tab){
+  document.querySelectorAll('[data-tab]').forEach(b=> b.classList.toggle('active', b.dataset.tab===tab));
+  document.querySelectorAll('.panel').forEach(p=> p.classList.remove('active'));
+  const el=document.getElementById('panel-'+tab);
+  if(el) el.classList.add('active');
+  const titles={cover:'Halaman Awal', yasin:'Surah Yasin', tahlil:'Tahlil Lengkap', doa:'Doa Tahlil', info:'Tentang'};
+  const ct=document.getElementById('crumbTitle'); if(ct) ct.textContent=titles[tab]||tab;
+  const tt=document.getElementById('topTitle');
+  if(tt) tt.innerHTML = tab==='cover' ? 'Mengirim doa <i>untuk almarhumah</i>' : `Bacaan <i>${titles[tab]}</i>`;
+  const bm=document.getElementById('btnMasuk'); if(bm) bm.style.display = tab==='cover' ? 'flex' : 'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('[data-tab]').forEach(b=> b.addEventListener('click', ()=> activate(b.dataset.tab)));
+document.querySelectorAll('[data-jump]').forEach(b=> b.addEventListener('click', ()=> activate(b.dataset.jump)));
+document.getElementById('search')?.addEventListener('input', render);
+document.getElementById('pillLatin')?.addEventListener('click', ()=>{prefs.showLatin=!prefs.showLatin; if(prefs.showLatin)prefs.arabOnly=false; refresh()});
+document.getElementById('pillTerjemah')?.addEventListener('click', ()=>{prefs.showTerjemah=!prefs.showTerjemah; if(prefs.showTerjemah)prefs.arabOnly=false; refresh()});
+document.getElementById('pillArabOnly')?.addEventListener('click', ()=>{prefs.arabOnly=!prefs.arabOnly; if(prefs.arabOnly){prefs.showLatin=false;prefs.showTerjemah=false} refresh()});
+document.getElementById('btnMinus')?.addEventListener('click', ()=>{prefs.fontScale=Math.max(-2,prefs.fontScale-1);refresh()});
+document.getElementById('btnPlus')?.addEventListener('click', ()=>{prefs.fontScale=Math.min(4,prefs.fontScale+1);refresh()});
+document.getElementById('btnTheme')?.addEventListener('click', ()=>{prefs.theme=prefs.theme==='dark'?'light':'dark';refresh()});
+document.getElementById('btnMasuk')?.addEventListener('click', ()=> activate('yasin'));
+document.getElementById('btnEditCover')?.addEventListener('click', ()=>{ document.getElementById('drawer').classList.add('show'); document.getElementById('scrim').classList.add('show'); document.getElementById('drawerBody').querySelector('#fName')?.focus(); });
+document.getElementById('photoInput')?.addEventListener('change', e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader(); r.onload=()=>{ cover.photo=r.result; saveCover(); applyCover(); refresh(); }; r.readAsDataURL(f);
+});
+document.getElementById('btnHapusFoto')?.addEventListener('click', ()=>{ cover.photo="assets/img/portrait.jpg"; saveCover(); applyCover(); refresh(); });
+
+const scrim=document.getElementById('scrim'), drawer=document.getElementById('drawer');
+function openDrawer(){ scrim.classList.add('show'); drawer.classList.add('show'); }
+function closeDrawer(){ scrim.classList.remove('show'); drawer.classList.remove('show'); }
+document.getElementById('railSettings')?.addEventListener('click', openDrawer);
+document.getElementById('dockSettings')?.addEventListener('click', openDrawer);
+document.getElementById('btnCloseDrawer')?.addEventListener('click', closeDrawer);
+scrim?.addEventListener('click', closeDrawer);
+document.addEventListener('keydown', e=>{ if(e.key==='/' && document.activeElement.tagName!=='INPUT' && document.activeElement.tagName!=='TEXTAREA'){ e.preventDefault(); document.getElementById('search')?.focus(); } if(e.key==='Escape') closeDrawer(); });
+
+// init — fetch JSON then render
+async function init(){
+  applyTheme(); applyCover();
+  // initial render loading state
+  render();
+  try{
+    const [ry, rt] = await Promise.all([fetch('assets/data/yasin.json'), fetch('assets/data/tahlil.json')]);
+    if(!ry.ok) throw new Error('yasin.json HTTP '+ry.status);
+    if(!rt.ok) throw new Error('tahlil.json HTTP '+rt.status);
+    const jy = await ry.json();
+    const jt = await rt.json();
+    YASIN = (jy.ayat||[]).map(x=>({no:x.n, arab:x.ar, latin:x.latin||'', terjemah:x.id}));
+    TAHLIL = (jt.bait||[]).map(b=>{
+      const m=(b.latin||'').match(/\(\s*(\d+)\s*x\s*\)/i);
+      const counter = m ? parseInt(m[1],10) : null;
+      return {judul:b.section, arab:b.ar, latin:b.latin, terjemah:b.id, counter};
+    });
+    DOA = TAHLIL.filter(t=> t.judul.includes('Doa'));
+  }catch(e){
+    console.error('fetch JSON gagal', e);
+    const ly=document.getElementById('list-yasin');
+    if(ly && YASIN.length===0) ly.innerHTML=`<div style="background:var(--card);border:1px solid #cc7777;border-radius:16px;padding:18px;color:#7a1f1f">Gagal memuat <code>yasin.json</code> / <code>tahlil.json</code>: ${esc(e.message)}.<br>Jika dibuka via <code>file://</code>, jalankan via http server (<code>npx serve</code> atau VS Code Live Server).<br>Data: 0 ayat, 0 bait.</div>`;
+    const lt=document.getElementById('list-tahlil');
+    if(lt && TAHLIL.length===0) lt.innerHTML=`<div style="background:var(--card);border:1px solid #cc7777;border-radius:16px;padding:18px;color:#7a1f1f">Gagal memuat tahlil.json: ${esc(e.message)}</div>`;
+  }
+  refresh();
+  activate('cover');
+}
+init();
+</script>
 </body>
 </html>
