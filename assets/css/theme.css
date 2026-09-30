@@ -1,6 +1,6 @@
-/* === Design Tokens === */
+/* === Design Tokens (Light Mode - Default) === */
 :root {
-  /* Colors */
+  /* Colors - Light (parchment) */
   --color-primary: #12211A;
   --color-secondary: #5C6B63;
   --color-tertiary: #A8863F;
@@ -9,6 +9,17 @@
   --color-on-tertiary: #12211A;
   --color-muted: #9FB3A8;
   --color-surface-deep: #0C1712;
+
+  /* Semantic aliases */
+  --bg: var(--color-neutral);
+  --text: var(--color-primary);
+  --text-secondary: var(--color-secondary);
+  --text-muted: var(--color-muted);
+  --accent: var(--color-tertiary);
+  --accent-text: var(--color-on-tertiary);
+  --border: rgba(18, 33, 26, 0.1);
+  --border-strong: rgba(18, 33, 26, 0.15);
+  --backdrop-bg: rgba(247, 243, 234, 0.85);
 
   /* Typography */
   --font-display: 'Cormorant Garamond', Georgia, serif;
@@ -19,6 +30,8 @@
   --radius-sm: 2px;
   --radius-md: 4px;
   --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-pill: 100px;
 
   /* Spacing */
   --space-xs: 4px;
@@ -34,7 +47,37 @@
   --transition-slow: 600ms ease;
 }
 
-/* Reduced motion */
+/* === Dark Mode === */
+[data-theme="dark"] {
+  --color-primary: #F7F3EA;
+  --color-secondary: #9FB3A8;
+  --color-neutral: #12211A;
+  --color-on-primary: #12211A;
+  --color-on-tertiary: #F7F3EA;
+  --color-muted: #5C6B63;
+  --color-surface-deep: #0C1712;
+
+  --bg: var(--color-neutral);
+  --text: var(--color-primary);
+  --text-secondary: var(--color-secondary);
+  --text-muted: var(--color-muted);
+  --accent: var(--color-tertiary);
+  --accent-text: var(--color-on-tertiary);
+  --border: rgba(247, 243, 234, 0.1);
+  --border-strong: rgba(247, 243, 234, 0.15);
+  --backdrop-bg: rgba(18, 33, 26, 0.85);
+}
+
+/* === Global theme transition === */
+html,
+body,
+#cover-view,
+#booklet-view,
+.back-btn-wrap {
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* === Reduced motion === */
 @media (prefers-reduced-motion: reduce) {
   :root {
     --transition-fast: 0ms;
@@ -45,19 +88,19 @@
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
 
-/* Dark section override */
+/* === Tahlil dark section (always dark) === */
 .tahlil-section {
-  background-color: var(--color-surface-deep);
+  background-color: var(--color-surface-deep) !important;
   color: var(--color-on-primary);
 }
 
-.tahlil-section .taitial,
-.tahlil-section h2,
-.tahlil-section h3 {
+.tahlil-section .section-title,
+.tahlil-section h2 {
   color: var(--color-tertiary);
 }
 

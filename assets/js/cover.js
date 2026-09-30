@@ -1,68 +1,107 @@
 /**
- * cover.js — Render cover view from memorial data
+ * cover.js — Render cover view with staggered fade-in animations
  */
 export function renderCover(container, data) {
   container.innerHTML = '';
 
+  var staggerIndex = 0;
+
+  function createStagger() {
+    var el = document.createElement('div');
+    el.className = 'stagger';
+    // Stagger delay: 100ms per element
+    el.style.animationDelay = (staggerIndex * 100) + 'ms';
+    staggerIndex++;
+    return el;
+  }
+
   // Portrait
-  const frame = document.createElement('div');
+  var frameWrap = createStagger();
+  var frame = document.createElement('div');
   frame.className = 'portrait-frame';
-  const img = document.createElement('img');
+  var img = document.createElement('img');
   img.src = data.foto;
   img.alt = data.fotoAlt;
   img.loading = 'eager';
   img.width = 577;
   img.height = 707;
   frame.appendChild(img);
-  container.appendChild(frame);
+  frameWrap.appendChild(frame);
+  container.appendChild(frameWrap);
 
-  // Info
-  const info = document.createElement('div');
+  // Info block
+  var info = document.createElement('div');
   info.className = 'cover-info';
 
-  const name = document.createElement('h1');
+  // Name
+  var nameStagger = createStagger();
+  var name = document.createElement('h1');
   name.textContent = data.nama;
-  info.appendChild(name);
+  nameStagger.appendChild(name);
+  info.appendChild(nameStagger);
 
-  const dates = document.createElement('p');
+  // Dates
+  var datesStagger = createStagger();
+  var dates = document.createElement('p');
   dates.className = 'dates';
-  dates.textContent = data.lahir + ' — ' + data.wafat;
-  info.appendChild(dates);
+  dates.textContent = data.lahir + ' \u2014 ' + data.wafat;
+  datesStagger.appendChild(dates);
+  info.appendChild(datesStagger);
 
   // Keluarga
-  const fam = document.createElement('ul');
+  var famStagger = createStagger();
+  var fam = document.createElement('ul');
   fam.className = 'keluarga';
   data.keluarga.forEach(function (k) {
-    const li = document.createElement('li');
+    var li = document.createElement('li');
     li.textContent = k.nama + ' ';
-    const span = document.createElement('span');
+    var span = document.createElement('span');
     span.className = 'hubungan';
     span.textContent = '(' + k.hubungan + ')';
     li.appendChild(span);
     fam.appendChild(li);
   });
-  info.appendChild(fam);
+  famStagger.appendChild(fam);
+  info.appendChild(famStagger);
 
   container.appendChild(info);
 
   // Doa
   if (data.doa && data.doa.length) {
-    const doas = document.createElement('div');
+    var doaStagger = createStagger();
+    var doas = document.createElement('div');
     doas.className = 'cover-doas';
+
+    // Decorative divider
+    var divider = document.createElement('div');
+    divider.className = 'doa-divider';
+    doas.appendChild(divider);
+
     data.doa.forEach(function (d) {
-      const p = document.createElement('p');
+      var p = document.createElement('p');
       p.className = 'arabic';
       p.textContent = d;
       doas.appendChild(p);
     });
-    container.appendChild(doas);
+    doaStagger.appendChild(doas);
+    container.appendChild(doaStagger);
   }
 
   // Mulai button
-  const btn = document.createElement('button');
+  var btnStagger = createStagger();
+  var btn = document.createElement('button');
   btn.id = 'mulai-btn';
   btn.className = 'btn btn-primary';
   btn.textContent = 'Mulai';
   btn.setAttribute('aria-label', 'Buka buku Yasin dan Tahlil');
-  container.appendChild(btn);
+  btnStagger.appendChild(btn);
+  container.appendChild(btnStagger);
+
+  // Trigger staggered animations after a small delay
+  requestAnimationFrame(function () {
+    var staggerEls = container.querySelectorAll('.stagger');
+    staggerEls.forEach(function (el) {
+      el.classList.add('visible');
+    });
+  });
 }

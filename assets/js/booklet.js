@@ -1,26 +1,29 @@
 /**
- * booklet.js — Render Yasin + Tahlil from JSON
+ * booklet.js — Render Yasin + Tahlil from JSON, with smooth toggle transitions
  */
 export async function loadBooklet(container) {
   container.innerHTML = '<p class="loading-text">Memuat...</p>';
 
   try {
-    const [yasinRes, tahlilRes] = await Promise.all([
+    var responses = await Promise.all([
       fetch('assets/data/yasin.json'),
       fetch('assets/data/tahlil.json')
     ]);
 
+    var yasinRes = responses[0];
+    var tahlilRes = responses[1];
+
     if (!yasinRes.ok || !tahlilRes.ok) throw new Error('Gagal memuat data');
 
-    const yasin = await yasinRes.json();
-    const tahlil = await tahlilRes.json();
+    var yasin = await yasinRes.json();
+    var tahlil = await tahlilRes.json();
 
     container.innerHTML = '';
 
     // Back button
-    const backWrap = document.createElement('div');
+    var backWrap = document.createElement('div');
     backWrap.className = 'back-btn-wrap';
-    const backBtn = document.createElement('button');
+    var backBtn = document.createElement('button');
     backBtn.className = 'btn-back';
     backBtn.id = 'back-btn';
     backBtn.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L5 8l5 5"/></svg> Kembali';
@@ -34,9 +37,15 @@ export async function loadBooklet(container) {
     renderTahlilSection(container, tahlil);
 
     // Footer
-    const footer = document.createElement('footer');
+    var footer = document.createElement('footer');
     footer.className = 'site-footer';
-    footer.textContent = 'Al-Fatihah untuk almarhumah Lia Aris Tiarawati';
+    var footerText = document.createElement('p');
+    footerText.textContent = 'Al-Fatihah untuk almarhumah';
+    footer.appendChild(footerText);
+    var footerArabic = document.createElement('p');
+    footerArabic.className = 'arabic';
+    footerArabic.textContent = 'الفَاتِحَة';
+    footer.appendChild(footerArabic);
     container.appendChild(footer);
 
   } catch (err) {
@@ -46,50 +55,54 @@ export async function loadBooklet(container) {
 }
 
 function renderYasinSection(container, data) {
-  const section = document.createElement('section');
+  var section = document.createElement('section');
   section.className = 'booklet-section yasin-section';
 
-  const title = document.createElement('h2');
-  title.className = 'taitial';
+  var title = document.createElement('h2');
+  title.className = 'section-title';
   title.textContent = data.surah;
   section.appendChild(title);
 
-  const info = document.createElement('p');
+  var info = document.createElement('p');
   info.className = 'section-source';
-  info.textContent = 'Surah ' + data.surah + ' (' + data.count + 'x)';
+  info.textContent = 'Surah ' + data.surah + ' \u2014 ' + data.count + ' ayat';
   section.appendChild(info);
 
   // Toggle bar
-  const bar = document.createElement('div');
+  var bar = document.createElement('div');
   bar.className = 'toggle-bar';
-  bar.appendChild(makeToggle('latin-' + data.surah, 'Latin'));
-  bar.appendChild(makeToggle('terjemah-' + data.surah, 'Terjemah'));
+  bar.appendChild(makeToggle('latin-yasin', 'Latin'));
+  bar.appendChild(makeToggle('terjemah-yasin', 'Terjemah'));
   section.appendChild(bar);
 
   // Ayat
   data.ayat.forEach(function (a) {
-    const item = document.createElement('div');
+    var item = document.createElement('div');
     item.className = 'ayat-item';
 
-    const num = document.createElement('div');
+    // Number badge
+    var num = document.createElement('div');
     num.className = 'ayat-num';
-    num.textContent = 'Ayat ' + a.n;
+    num.textContent = a.n;
     item.appendChild(num);
 
-    const ar = document.createElement('p');
+    // Arabic (above transliteration)
+    var ar = document.createElement('p');
     ar.className = 'arabic';
     ar.textContent = a.ar;
     item.appendChild(ar);
 
-    const latin = document.createElement('p');
-    latin.className = 'latin hidden';
-    latin.setAttribute('data-show', 'latin-' + data.surah);
+    // Latin (toggleable, hidden by default)
+    var latin = document.createElement('p');
+    latin.className = 'latin';
+    latin.setAttribute('data-show', 'latin-yasin');
     latin.textContent = a.latin;
     item.appendChild(latin);
 
-    const tr = document.createElement('p');
-    tr.className = 'terjemah hidden';
-    tr.setAttribute('data-show', 'terjemah-' + data.surah);
+    // Terjemah (toggleable, hidden by default)
+    var tr = document.createElement('p');
+    tr.className = 'terjemah';
+    tr.setAttribute('data-show', 'terjemah-yasin');
     tr.textContent = a.id;
     item.appendChild(tr);
 
@@ -100,21 +113,21 @@ function renderYasinSection(container, data) {
 }
 
 function renderTahlilSection(container, data) {
-  const section = document.createElement('section');
-  section.className = 'booklet-section taitial tahlil-section';
+  var section = document.createElement('section');
+  section.className = 'booklet-section tahlil-section';
 
-  const title = document.createElement('h2');
-  title.className = 'taitial';
+  var title = document.createElement('h2');
+  title.className = 'section-title';
   title.textContent = data.title;
   section.appendChild(title);
 
-  const info = document.createElement('p');
+  var info = document.createElement('p');
   info.className = 'section-source';
-  info.textContent = data.count + ' bagian — ' + data.source;
+  info.textContent = data.count + ' bagian \u2014 ' + data.source;
   section.appendChild(info);
 
   // Toggle bar
-  const bar = document.createElement('div');
+  var bar = document.createElement('div');
   bar.className = 'toggle-bar';
   bar.appendChild(makeToggle('latin-tahlil', 'Latin'));
   bar.appendChild(makeToggle('terjemah-tahlil', 'Terjemah'));
@@ -122,27 +135,40 @@ function renderTahlilSection(container, data) {
 
   // Bait
   data.bait.forEach(function (b) {
-    const item = document.createElement('div');
+    var item = document.createElement('div');
     item.className = 'bait-item';
 
-    const num = document.createElement('div');
+    // Number badge
+    var num = document.createElement('div');
     num.className = 'bait-num';
-    num.textContent = b.n + (b.section ? ' (' + b.section + ')' : '');
+    num.textContent = b.n;
     item.appendChild(num);
 
-    const ar = document.createElement('p');
+    // Section label
+    if (b.section) {
+      var secLabel = document.createElement('span');
+      secLabel.className = 'bait-num-full';
+      secLabel.textContent = ' \u2014 ' + b.section;
+      secLabel.style.color = 'var(--accent)';
+      item.appendChild(secLabel);
+    }
+
+    // Arabic (above transliteration)
+    var ar = document.createElement('p');
     ar.className = 'arabic';
     ar.textContent = b.ar;
     item.appendChild(ar);
 
-    const latin = document.createElement('p');
-    latin.className = 'latin hidden';
+    // Latin (toggleable)
+    var latin = document.createElement('p');
+    latin.className = 'latin';
     latin.setAttribute('data-show', 'latin-tahlil');
     latin.textContent = b.latin;
     item.appendChild(latin);
 
-    const tr = document.createElement('p');
-    tr.className = 'terjemah hidden';
+    // Terjemah (toggleable)
+    var tr = document.createElement('p');
+    tr.className = 'terjemah';
     tr.setAttribute('data-show', 'terjemah-tahlil');
     tr.textContent = b.id;
     item.appendChild(tr);
@@ -154,16 +180,25 @@ function renderTahlilSection(container, data) {
 }
 
 function makeToggle(id, label) {
-  const btn = document.createElement('button');
+  var btn = document.createElement('button');
   btn.className = 'btn btn-toggle';
   btn.setAttribute('aria-pressed', 'false');
   btn.setAttribute('data-target', id);
   btn.textContent = label;
   btn.addEventListener('click', function () {
-    const pressed = btn.getAttribute('aria-pressed') === 'true';
+    var pressed = btn.getAttribute('aria-pressed') === 'true';
     btn.setAttribute('aria-pressed', String(!pressed));
-    document.querySelectorAll('[data-show="' + id + '"]').forEach(function (el) {
-      el.classList.toggle('hidden');
+
+    // Smooth toggle with height transition
+    var targets = document.querySelectorAll('[data-show="' + id + '"]');
+    targets.forEach(function (el) {
+      if (!pressed) {
+        // Show
+        el.classList.add('show');
+      } else {
+        // Hide
+        el.classList.remove('show');
+      }
     });
   });
   return btn;

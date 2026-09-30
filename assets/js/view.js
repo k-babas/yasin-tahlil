@@ -1,36 +1,45 @@
 /**
- * view.js — Cover <-> Booklet transition
+ * view.js — Cover <-> Booklet crossfade transitions
  */
 export function initViews() {
-  const cover = document.getElementById('cover-view');
-  const booklet = document.getElementById('booklet-view');
-  return { cover, booklet };
+  var cover = document.getElementById('cover-view');
+  var booklet = document.getElementById('booklet-view');
+  return { cover: cover, booklet: booklet };
 }
 
-export function showBooklet({ cover, booklet }) {
-  cover.style.opacity = '0';
-  cover.style.pointerEvents = 'none';
-  setTimeout(() => {
-    cover.classList.add('hidden');
-    booklet.classList.remove('hidden');
-    booklet.classList.add('active');
-    booklet.style.opacity = '0';
-    // force reflow
-    booklet.offsetHeight;
-    booklet.style.opacity = '1';
+export function showBooklet(views) {
+  views.cover.style.opacity = '0';
+  views.cover.style.pointerEvents = 'none';
+  setTimeout(function () {
+    views.cover.classList.add('hidden');
+    views.booklet.classList.remove('hidden');
+    views.booklet.classList.add('active');
+    views.booklet.style.opacity = '0';
+    // Force reflow
+    views.booklet.offsetHeight;
+    views.booklet.style.opacity = '1';
+    views.booklet.style.pointerEvents = 'auto';
     window.scrollTo({ top: 0 });
+
+    // Trigger back button slide-in
+    var backWrap = document.querySelector('.back-btn-wrap');
+    if (backWrap) {
+      backWrap.classList.remove('slide-in');
+      void backWrap.offsetWidth;
+      backWrap.classList.add('slide-in');
+    }
   }, 300);
 }
 
-export function showCover({ cover, booklet }) {
-  booklet.style.opacity = '0';
-  booklet.style.pointerEvents = 'none';
-  setTimeout(() => {
-    booklet.classList.remove('active');
-    booklet.classList.add('hidden');
-    cover.classList.remove('hidden');
-    cover.style.opacity = '1';
-    cover.style.pointerEvents = 'auto';
+export function showCover(views) {
+  views.booklet.style.opacity = '0';
+  views.booklet.style.pointerEvents = 'none';
+  setTimeout(function () {
+    views.booklet.classList.remove('active');
+    views.booklet.classList.add('hidden');
+    views.cover.classList.remove('hidden');
+    views.cover.style.opacity = '1';
+    views.cover.style.pointerEvents = 'auto';
     window.scrollTo({ top: 0 });
   }, 300);
 }

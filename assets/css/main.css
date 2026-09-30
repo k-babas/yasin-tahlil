@@ -13,38 +13,113 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-neutral);
-  color: var(--color-primary);
+  background-color: var(--bg);
+  color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
+/* === Theme Toggle === */
+.theme-toggle {
+  position: fixed;
+  top: var(--space-md);
+  right: var(--space-md);
+  z-index: 50;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--backdrop-bg);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal), transform var(--transition-fast);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+.theme-icon--sun {
+  display: none;
+}
+
+.theme-icon--moon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-icon--sun {
+  display: block;
+}
+
+[data-theme="dark"] .theme-icon--moon {
+  display: none;
+}
+
+/* Rotate animation on toggle */
+@keyframes theme-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.theme-toggle--spinning {
+  animation: theme-spin 0.4s ease;
+}
+
 /* === Typography === */
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 600;
   line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
-h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
-h2 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
-h3 { font-size: clamp(1rem, 2.5vw, 1.25rem); }
+h1 {
+  font-weight: 300;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
 
-p { max-width: 65ch; }
+h2 {
+  font-weight: 600;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+h3 {
+  font-weight: 400;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+p {
+  max-width: 65ch;
+}
 
 /* === Arabic text === */
 .arabic {
   font-family: var(--font-arabic);
   direction: rtl;
   text-align: right;
-  line-height: 2;
+  line-height: 2.2;
   font-size: clamp(1.25rem, 3vw, 1.75rem);
-  color: var(--color-primary);
+  color: var(--text);
 }
 
 .tahlil-section .arabic {
-  color: var(--color-neutral);
+  color: var(--color-on-primary);
 }
 
 /* === Buttons === */
@@ -54,21 +129,26 @@ p { max-width: 65ch; }
   justify-content: center;
   gap: var(--space-sm);
   padding: var(--space-sm) var(--space-lg);
-  border: var(--radius-sm) solid;
+  border: 1px solid;
   border-radius: var(--radius-md);
   font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
   text-decoration: none;
   line-height: 1.5;
 }
 
+/* Primary button */
 .btn-primary {
-  background-color: var(--color-tertiary);
-  color: var(--color-on-tertiary);
-  border-color: var(--color-tertiary);
+  background-color: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
+  letter-spacing: 0.03em;
+  padding: var(--space-md) var(--space-xl);
+  font-size: 1.125rem;
+  border-radius: var(--radius-pill);
 }
 
 .btn-primary:hover,
@@ -78,32 +158,36 @@ p { max-width: 65ch; }
 }
 
 .btn-primary:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--text);
   outline-offset: 2px;
 }
 
+/* Toggle buttons - pill shaped */
 .btn-toggle {
   background: transparent;
-  color: var(--color-tertiary);
-  border-color: var(--color-tertiary);
-  font-size: 0.875rem;
+  color: var(--accent);
+  border-color: var(--accent);
+  font-size: 0.8125rem;
+  font-weight: 500;
   padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-pill);
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .btn-toggle:hover,
 .btn-toggle:focus-visible {
-  background-color: var(--color-tertiary);
-  color: var(--color-on-tertiary);
+  background-color: var(--accent);
+  color: var(--accent-text);
 }
 
 .btn-toggle:focus-visible {
-  outline: 2px solid var(--color-tertiary);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
 .btn-toggle[aria-pressed="true"] {
-  background-color: var(--color-tertiary);
-  color: var(--color-on-tertiary);
+  background-color: var(--accent);
+  color: var(--accent-text);
 }
 
 /* === Cover View === */
@@ -113,17 +197,43 @@ p { max-width: 65ch; }
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: var(--space-lg);
+  padding: var(--space-xl) var(--space-md);
   text-align: center;
-  gap: var(--space-lg);
+  gap: var(--space-md);
 }
 
+/* Staggered fade-in animation */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger {
+  opacity: 0;
+}
+
+.stagger.visible {
+  animation: fade-in-up 0.6s ease forwards;
+}
+
+/* Portrait */
 .portrait-frame {
-  width: min(280px, 70vw);
-  height: min(340px, 85vw);
-  border-radius: var(--radius-lg);
+  width: min(260px, 65vw);
+  height: min(320px, 80vw);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  border: 2px solid var(--color-secondary);
+  border: 1px solid var(--accent);
+  transition: transform var(--transition-normal);
+}
+
+.portrait-frame:hover {
+  transform: scale(1.02);
 }
 
 .portrait-frame img {
@@ -134,6 +244,7 @@ p { max-width: 65ch; }
   display: block;
 }
 
+/* Cover info */
 .cover-info {
   display: flex;
   flex-direction: column;
@@ -143,28 +254,31 @@ p { max-width: 65ch; }
 
 .cover-info .dates {
   font-family: var(--font-body);
-  color: var(--color-secondary);
+  color: var(--text-secondary);
   font-size: 0.9375rem;
+  letter-spacing: 0.01em;
 }
 
+/* Keluarga list */
 .cover-info .keluarga {
   list-style: none;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--space-xs);
   margin-top: var(--space-sm);
 }
 
 .cover-info .keluarga li {
   font-size: 0.9375rem;
-  color: var(--color-secondary);
+  color: var(--text-secondary);
 }
 
 .cover-info .keluarga .hubungan {
-  color: var(--color-muted);
+  color: var(--text-muted);
   font-size: 0.8125rem;
 }
 
+/* Doa */
 .cover-doas {
   display: flex;
   flex-direction: column;
@@ -173,15 +287,20 @@ p { max-width: 65ch; }
   margin-top: var(--space-md);
 }
 
-.cover-doas .arabic {
-  font-size: clamp(1rem, 2.5vw, 1.375rem);
-  max-width: 600px;
+.doa-divider {
+  width: 64px;
+  height: 1px;
+  background: var(--border-strong);
 }
 
+.cover-doas .arabic {
+  font-size: clamp(1rem, 2.5vw, 1.375rem);
+  max-width: 560px;
+}
+
+/* Mulai button */
 #mulai-btn {
   margin-top: var(--space-md);
-  font-size: 1.125rem;
-  padding: var(--space-md) var(--space-xl);
 }
 
 /* === Booklet View === */
@@ -199,15 +318,35 @@ p { max-width: 65ch; }
   position: sticky;
   top: 0;
   z-index: 10;
-  background: var(--color-neutral);
+  background: var(--backdrop-bg);
   padding: var(--space-sm) var(--space-md);
-  border-bottom: 1px solid rgba(18, 33, 26, 0.1);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translateY(0);
+  transition: background-color var(--transition-normal);
+}
+
+/* Slide-up entrance for back button */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.back-btn-wrap.slide-in {
+  animation: slide-up 0.4s ease forwards;
 }
 
 .btn-back {
   background: none;
   border: none;
-  color: var(--color-secondary);
+  color: var(--text-secondary);
   font-family: var(--font-body);
   font-size: 0.875rem;
   cursor: pointer;
@@ -215,15 +354,16 @@ p { max-width: 65ch; }
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
+  transition: color var(--transition-fast);
 }
 
 .btn-back:hover,
 .btn-back:focus-visible {
-  color: var(--color-tertiary);
+  color: var(--accent);
 }
 
 .btn-back:focus-visible {
-  outline: 2px solid var(--color-tertiary);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -232,7 +372,7 @@ p { max-width: 65ch; }
   height: 16px;
 }
 
-/* Sections */
+/* === Booklet Sections === */
 .booklet-section {
   max-width: 720px;
   margin: 0 auto;
@@ -240,25 +380,60 @@ p { max-width: 65ch; }
 }
 
 .booklet-section + .booklet-section {
-  border-top: 1px solid rgba(18, 33, 26, 0.1);
+  border-top: 1px solid var(--border);
 }
 
-.taitial {
+/* Section fade-in on scroll */
+@keyframes section-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.booklet-section {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.booklet-section.in-view {
+  animation: section-reveal 0.6s ease forwards;
+}
+
+/* Section title */
+.section-title {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.5rem, 3.5vw, 2rem);
-  color: var(--color-primary);
+  color: var(--text);
   margin-bottom: var(--space-sm);
   text-align: center;
+  letter-spacing: -0.02em;
+}
+
+/* Section divider under title */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--accent);
+  margin: var(--space-sm) auto 0;
 }
 
 .section-source {
   text-align: center;
-  color: var(--color-muted);
+  color: var(--text-muted);
   font-size: 0.8125rem;
   margin-bottom: var(--space-lg);
+  margin-top: var(--space-sm);
 }
 
+/* Toggle bar */
 .toggle-bar {
   display: flex;
   justify-content: center;
@@ -267,11 +442,11 @@ p { max-width: 65ch; }
   flex-wrap: wrap;
 }
 
-/* Ayat / Bait items */
+/* === Ayat / Bait items === */
 .ayat-item,
 .bait-item {
   padding: var(--space-md) 0;
-  border-bottom: 1px solid rgba(18, 33, 26, 0.06);
+  border-bottom: 1px solid var(--border);
 }
 
 .tahlil-section .ayat-item,
@@ -279,12 +454,29 @@ p { max-width: 65ch; }
   border-bottom-color: rgba(247, 243, 234, 0.06);
 }
 
+/* Ayat/Bait number badge */
 .ayat-num,
 .bait-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-text);
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 0.8125rem;
-  color: var(--color-tertiary);
+  font-size: 0.75rem;
+  margin-bottom: var(--space-sm);
+}
+
+.ayat-num-full,
+.bait-num-full {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--accent);
   margin-bottom: var(--space-xs);
 }
 
@@ -292,11 +484,29 @@ p { max-width: 65ch; }
   margin-bottom: var(--space-sm);
 }
 
+/* Toggleable content with height transition */
 .latin,
 .terjemah {
-  color: var(--color-secondary);
+  color: var(--text-secondary);
   font-size: 0.9375rem;
   line-height: 1.6;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.3s ease;
+  margin-bottom: 0;
+}
+
+.latin.show,
+.terjemah.show {
+  max-height: 600px;
+  opacity: 1;
+  margin-bottom: var(--space-sm);
+}
+
+.tahlil-section .latin,
+.tahlil-section .terjemah {
+  color: var(--color-muted);
 }
 
 .terjemah {
@@ -307,22 +517,26 @@ p { max-width: 65ch; }
   display: none !important;
 }
 
-/* Tahlil dark section */
+/* === Tahlil dark section (always dark) === */
 .tahlil-section {
   margin: var(--space-xl) calc(-1 * var(--space-md));
   padding: var(--space-xl) var(--space-md);
-  background-color: var(--color-surface-deep);
 }
 
-/* Footer */
+/* === Footer === */
 .site-footer {
   text-align: center;
   padding: var(--space-xl) var(--space-md);
-  color: var(--color-muted);
+  color: var(--text-muted);
   font-size: 0.8125rem;
 }
 
-/* Modal */
+.site-footer .arabic {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* === Modal === */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -342,18 +556,22 @@ p { max-width: 65ch; }
 }
 
 .modal-box {
-  background: var(--color-neutral);
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   max-width: 400px;
   width: 90%;
   text-align: center;
+  transition: background-color var(--transition-normal);
 }
 
 .modal-box p {
   margin-bottom: var(--space-lg);
   font-size: 0.9375rem;
-  color: var(--color-primary);
+  color: var(--text);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .modal-actions {
@@ -365,13 +583,28 @@ p { max-width: 65ch; }
 /* Loading placeholder */
 .loading-text {
   text-align: center;
-  color: var(--color-muted);
+  color: var(--text-muted);
   padding: var(--space-xl);
   font-size: 0.9375rem;
 }
 
-/* === Responsive: Tablet+ === */
+/* === Responsive: Tablet+ (640px) === */
 @media (min-width: 640px) {
+  #cover-view {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .cover-info .keluarga {
+    grid-template-columns: auto auto;
+    gap: var(--space-xs) var(--space-lg);
+    justify-content: center;
+  }
+
+  .portrait-frame {
+    width: min(300px, 50vw);
+    height: min(370px, 62vw);
+  }
+
   .booklet-section {
     padding: var(--space-xl) var(--space-lg);
   }
@@ -382,15 +615,67 @@ p { max-width: 65ch; }
   }
 }
 
-/* === Responsive: Desktop === */
+/* === Responsive: Desktop (1024px) === */
 @media (min-width: 1024px) {
+  #cover-view {
+    padding: var(--space-xxl) var(--space-lg);
+  }
+
+  .cover-info .keluarga {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+
+  .cover-info .keluarga li {
+    display: inline;
+  }
+
+  .cover-info .keluarga li:not(:last-child)::after {
+    content: '\00b7';
+    margin: 0 var(--space-sm);
+    color: var(--text-muted);
+  }
+
   .booklet-section {
-    max-width: 800px;
+    max-width: 720px;
     padding: var(--space-xl) var(--space-xl);
   }
 
   .tahlil-section {
     margin: var(--space-xl) calc(-1 * var(--space-xl));
     padding: var(--space-xl) var(--space-xl);
+  }
+}
+
+/* === Reduced motion overrides === */
+@media (prefers-reduced-motion: reduce) {
+  .stagger.visible {
+    animation: none;
+    opacity: 1;
+  }
+
+  .portrait-frame:hover {
+    transform: none;
+  }
+
+  .booklet-section {
+    opacity: 1;
+    transform: none;
+  }
+
+  .booklet-section.in-view {
+    animation: none;
+  }
+
+  .back-btn-wrap.slide-in {
+    animation: none;
+  }
+
+  .latin, .terjemah {
+    transition: none;
+  }
+
+  .theme-toggle--spinning {
+    animation: none;
   }
 }
