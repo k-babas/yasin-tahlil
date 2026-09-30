@@ -102,10 +102,10 @@ button{font-family:inherit}
 .quote{border-left:2px solid var(--accent);padding:10px 12px;background:var(--card-2);border-radius:12px;font-size:13px;color:var(--ink);line-height:1.6}
 .quote small{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
-.cta-primary{flex:1 1 0;min-width:0;height:56px;padding:0 26px;border-radius:999px;border:none;background:var(--accent);color:var(--paper);font-weight:700;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;box-shadow:0 6px 20px rgba(20,61,42,.22);letter-spacing:.01em}
-.cta-secondary{flex:1 1 0;min-width:0;height:52px;padding:0 22px;border-radius:999px;border:none;background:var(--accent);color:var(--paper);font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;box-shadow:0 4px 16px rgba(20,61,42,.20)}
+.cta-primary{flex:1 1 0;min-width:0;height:52px;padding:0 22px;border-radius:999px;border:none;background:var(--accent);color:var(--paper);font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 16px rgba(20,61,42,.18)}
+.cta-secondary{flex:1 1 0;min-width:0;height:52px;padding:0 22px;border-radius:999px;border:none;background:var(--accent);color:var(--paper);font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;box-shadow:0 4px 16px rgba(20,61,42,.18)}
 .cta-secondary:hover,.cta-primary:hover{filter:brightness(1.06);transform:translateY(-1px)}
-[data-theme="dark"] [data-theme="dark"] .cta-primary,[data-theme="dark"] .cta-secondary{background:var(--accent);color:#0D1712;border:none}
+[data-theme="dark"] .cta-primary,[data-theme="dark"] .cta-secondary{background:var(--accent);color:#0D1712;border:none}
 .cta-note{font-size:11px;color:var(--muted);text-align:center}
 
 /* FILTER etc */
@@ -217,8 +217,8 @@ button{font-family:inherit}
   .basmalah{font-size:18px}
   .meta-grid{grid-template-columns:1fr 1fr;gap:8px}
   .meta{padding:10px}
-  .cta-row{flex-direction:column;gap:12px}
-  .cta-primary,.cta-secondary{width:100%;min-width:0;height:54px;font-size:15px}
+  .cta-row{flex-direction:row;gap:10px;flex-wrap:nowrap}
+  .cta-primary,.cta-secondary{flex:1 1 0;min-width:0;width:auto;height:50px;font-size:14px;padding:0 14px;gap:8px}
   .filterbar{margin:10px 12px 0;max-width:calc(100% - 24px);gap:8px;justify-content:center}
   .search{height:40px;flex-basis:100%}
   .filter-pills{width:100%;justify-content:center;flex-wrap:wrap;padding-bottom:2px}
@@ -236,6 +236,7 @@ button{font-family:inherit}
 }
 @media(max-width:380px){
   .meta-grid{grid-template-columns:1fr}
+  .cta-primary,.cta-secondary{height:48px;font-size:13.5px;padding:0 12px}
 }
 
 
