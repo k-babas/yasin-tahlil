@@ -517,10 +517,21 @@ async function init(){
     const jy = await ry.json();
     const jt = await rt.json();
     YASIN = (jy.ayat||[]).map(x=>({no:x.n, arab:x.ar, latin:x.latin||'', terjemah:x.id}));
-    TAHLIL = (jt.bait||[]).map(b=>{
+    TAHLIL = (jt.bait||[]).flatMap(b=>{
       const m=(b.latin||'').match(/\(\s*(\d+)\s*x\s*\)/i);
       const counter = m ? parseInt(m[1],10) : null;
-      return {judul:b.section, arab:b.ar, latin:b.latin, terjemah:b.id, counter};
+      const base = {judul:b.section, arab:b.ar, latin:b.latin, terjemah:b.id, counter};
+      if(!b.ar.includes('الْفَاتِحَةُ')) return [base];
+      const parts = b.ar.split('الْفَاتِحَةُ');
+      const out=[];
+      for(let i=0;i<parts.length-1;i++){
+        const seg = parts[i].trim();
+        const arab = (seg ? seg + ' ' : '') + 'الْفَاتِحَةُ ......';
+        out.push({judul:b.section + (parts.length>3 ? ' '+(i+1) : ''), arab, latin:'', terjemah:'', counter});
+      }
+      const tail = parts[parts.length-1].trim();
+      if(tail) out.push({judul:b.section, arab:tail, latin:'', terjemah:'', counter});
+      return out.length ? out : [base];
     });
     DOA = TAHLIL.filter(t=> t.judul.includes('Doa'));
   }catch(e){
