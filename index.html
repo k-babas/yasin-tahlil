@@ -238,6 +238,21 @@ button{font-family:inherit}
   .cta-row{flex-direction:column}
 }
 
+
+/* === Modern motion === */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+.panel.active{animation:fadeIn .32s ease}
+.cover-card{animation:scaleIn .55s cubic-bezier(.16,1,.3,1) both}
+.ayah{opacity:0;animation:fadeInUp .5s cubic-bezier(.16,1,.3,1) both}
+.ayah.in-view{opacity:1}
+.rail-btn,.dock button,.pill,.segtabs button,.btn-accent,.cta-primary,.cta-secondary{transition:transform .18s, background .18s, color .18s, box-shadow .18s}
+.rail-btn:active,.dock button:active,.pill:active{transform:scale(.96)}
+.cover-media .photo-frame img{transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.cover-media .photo-frame:hover img{transform:scale(1.03)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -248,10 +263,10 @@ button{font-family:inherit}
       <button class="rail-btn active" data-tab="cover" aria-label="Halaman Awal"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></button>
       <button class="rail-btn" data-tab="yasin" aria-label="Yasin"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8"/><path d="M8 11h8"/></svg></button>
       <button class="rail-btn" data-tab="tahlil" aria-label="Tahlil"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg></button>
-      <button class="rail-btn" data-tab="doa" aria-label="Doa"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/></svg></button>
+      <button class="rail-btn" data-tab="doa" aria-label="Doa"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11V9a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v2"/><path d="M15 11V9a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v2"/><path d="M8 12c0 2.2 1.8 4 4 4s4-1.8 4-4"/><path d="M12 7v5"/></svg></button>
       <button class="rail-btn" data-tab="info" aria-label="Info"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></button>
     </nav>
-    <div class="rail-foot"><button class="rail-btn" id="railSettings" aria-label="Pengaturan"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6 1.65 1.65 0 0 1-2 0 1.65 1.65 0 0 0-1-.6 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 6.6 15a1.65 1.65 0 0 0-.6-1 1.65 1.65 0 0 1 0-2c.18-.38.38-.77.6-1A1.65 1.65 0 0 0 6.27 9l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 10.88 6.6c.38-.22.77-.42 1.12-.6a1.65 1.65 0 0 1 2 0c.35.18.74.38 1 .6A1.65 1.65 0 0 0 16.72 6.27l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 11c-.22.38-.42.77-.6 1a1.65 1.65 0 0 1 0 2c.18.35.38.74.6 1z"/></svg></button></div>
+    <div class="rail-foot"><button class="rail-btn" id="railSettings" aria-label="Pengaturan"><svg class="ico ico-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h4"/><path d="M12 6h8"/><circle cx="8" cy="6" r="2"/><path d="M3 12h10"/><path d="M18 12h2"/><circle cx="15" cy="12" r="2"/><path d="M3 18h6"/><path d="M14 18h6"/><circle cx="10" cy="18" r="2"/></svg></button></div>
   </aside>
 
   <main class="main">
@@ -282,12 +297,7 @@ button{font-family:inherit}
                 <div style="font-size:11.5px;margin-top:4px">Memuat assets/img/portrait.jpg</div>
               </div>
             </div>
-            <div class="photo-actions">
-              <label class="btn-sm primary" for="photoInput"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg> Ganti foto</label>
-              <input id="photoInput" type="file" accept="image/*" hidden>
-              <button class="btn-sm" id="btnHapusFoto"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg> Hapus</button>
-            </div>
-            <div class="hint">Foto default <code>assets/img/portrait.jpg</code> (58KB). Ganti via tombol di atas — tersimpan lokal (localStorage yt_cover). Untuk permanen, ganti file portrait.jpg.</div>
+            <div class="hint">Foto <code>assets/img/portrait.jpg</code> — ganti file di repo untuk update permanen.</div>
           </div>
           <!-- BODY / DATA -->
           <div class="cover-body">
@@ -305,10 +315,8 @@ button{font-family:inherit}
             <div class="quote" id="vQuote">“إِنَّا لِلَّهِ وَإِنَّآ إِلَيْهِ رَاجِعُونَ — اللَّهُمَّ ارْحَمْهَا بِرَحْمَتِكَ الوَاسِعَةِ، وَأَغْفِرْ لَهَا بِفَضْلِكَ.”<small>Dipersembahkan suami untuk almarhumah Lia Aris Tiarawati • Al-Fatihah dihadiahkan untuk beliau</small></div>
             <div class="cta-row">
               <button class="cta-primary" data-jump="yasin"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Buka Yasin</button>
-              <button class="cta-secondary" data-jump="tahlil"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> Buka Tahlil</button>
-              <button class="cta-secondary" id="btnEditCover"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg> Edit data</button>
-            </div>
-            <div class="cta-note">Halaman awal ini tampil pertama kali. Data & foto bisa diubah di <b>Pengaturan → Data Almarhum</b>. Data fetch dari <code>yasin.json (83 ayat)</code> & <code>tahlil.json (24 bait)</code>.</div>
+              <button class="cta-secondary" data-jump="tahlil"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> Buka Tahlil</button></div>
+            <div class="cta-note">Halaman awal tampil pertama. Edit data di <code>index.html → let cover</code> & foto <code>assets/img/portrait.jpg</code>.</div>
           </div>
         </div>
       </div>
@@ -319,24 +327,24 @@ button{font-family:inherit}
     <div class="panel" id="panel-yasin">
       <div class="hero-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> <div><b>Dihadiahkan untuk <span class="js-name">Lia Aris Tiarawati</span></b> <small> • Surah Yasin 36 — 83 ayat</small></div><button class="btn-sm" data-jump="cover" style="margin-left:auto"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> Kembali ke awal</button></div>
       <div class="filterbar"><label class="search"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="search" placeholder="Cari ayat: &quot;hikmah&quot;, &quot;rahmat&quot;"><kbd>/</kbd></label><div class="filter-pills"><button class="pill on" id="pillLatin"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7V5h16v2"/><path d="M9 20h6"/><path d="M12 5v15"/></svg> Latin</button><button class="pill on" id="pillTerjemah"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M12 2a15 15 0 0 0 0 20"/></svg> Terjemah</button><button class="pill" id="pillArabOnly">Arab saja</button></div></div>
-      <div class="segwrap"><div class="segtabs" role="tablist"><button class="active" data-tab="yasin"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Yasin</button><button data-tab="tahlil"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> Tahlil</button><button data-tab="doa"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/></svg> Doa</button><button data-tab="info"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg> Info</button></div></div>
-      <div class="list" id="list-yasin"><div style="text-align:center;padding:24px;color:var(--muted)">Memuat 83 ayat Yasin…</div></div>
+      <div class="segwrap"><div class="segtabs" role="tablist"><button class="active" data-tab="yasin"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Yasin</button><button data-tab="tahlil"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> Tahlil</button><button data-tab="doa"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11V9a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v2"/><path d="M15 11V9a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v2"/><path d="M8 12c0 2.2 1.8 4 4 4s4-1.8 4-4"/><path d="M12 7v5"/></svg> Doa</button><button data-tab="info"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg> Info</button></div></div>
+      <div id="audioStatus" style="margin:8px 20px 0;font-size:11px;color:var(--muted);min-height:14px"></div><div class="list" id="list-yasin"><div style="text-align:center;padding:24px;color:var(--muted)">Memuat 83 ayat Yasin…</div></div>
     </div>
     <div class="panel" id="panel-tahlil"><div class="hero-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> <div><b>Tahlil untuk <span class="js-name">Lia Aris Tiarawati</span></b> <small> • 24 bait • Urutan NU lengkap</small></div><button class="btn-sm" data-jump="cover" style="margin-left:auto"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> Awal</button></div><div class="list" id="list-tahlil"><div style="text-align:center;padding:24px;color:var(--muted)">Memuat 24 bait Tahlil…</div></div></div>
-    <div class="panel" id="panel-doa"><div class="hero-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/></svg> <div><b>Doa penutup</b> <small> • Untuk <span class="js-name">Lia Aris Tiarawati</span> • Filter section mengandung 'Doa' (4 bait)</small></div><button class="btn-sm" data-jump="cover" style="margin-left:auto">Kembali</button></div><div class="list" id="list-doa"><div style="text-align:center;padding:24px;color:var(--muted)">Memuat doa…</div></div></div>
+    <div class="panel" id="panel-doa"><div class="hero-mini"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11V9a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v2"/><path d="M15 11V9a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v2"/><path d="M8 12c0 2.2 1.8 4 4 4s4-1.8 4-4"/><path d="M12 7v5"/></svg> <div><b>Doa penutup</b> <small> • Untuk <span class="js-name">Lia Aris Tiarawati</span> • Filter section mengandung 'Doa' (4 bait)</small></div><button class="btn-sm" data-jump="cover" style="margin-left:auto">Kembali</button></div><div class="list" id="list-doa"><div style="text-align:center;padding:24px;color:var(--muted)">Memuat doa…</div></div></div>
     <div class="panel" id="panel-info"><div class="info-grid"><div class="info-card"><h4>Tentang</h4><p>Halaman mengenang <b>Lia Aris Tiarawati</b> (19 Juli 1989 – 22 September 2026). Dipersembahkan suami <b>Muhamad Sidik A.</b> untuk almarhumah. Foto <code>assets/img/portrait.jpg</code>. Data Yasin 83 ayat & Tahlil 24 bait di-fetch dari JSON.</p></div><div class="info-card"><h4>Urutan Tahlil NU (24 bait)</h4><p>Pembukaan → Al-Ikhlas 3× → Al-Falaq → An-Nas → Al-Fatihah → Al-Baqarah → Ayat Kursi → Istighfar 3× → Dzikir → Tahlil 100× → Sholawat → Tasbih → Doa Pembuka/Taqabbal/Rahmat/Penutup (4 doa).</p></div></div><div class="hero-mini" style="margin:12px 20px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg> <div><b>Sumber data:</b> <code>assets/data/yasin.json</code> (Kemenag) & <code>tahlil.json</code> (quran.nu.or.id). Latin kosong pada Yasin (ditampilkan hanya jika ada).</div></div></div>
   </main>
 
-  <aside class="right" aria-label="Pengaturan"><div class="right-head"><h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6 1.65 1.65 0 0 1-2 0 1.65 1.65 0 0 0-1-.6 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 6.6 15a1.65 1.65 0 0 0-.6-1 1.65 1.65 0 0 1 0-2c.18-.38.38-.77.6-1A1.65 1.65 0 0 0 6.27 9l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 10.88 6.6c.38-.22.77-.42 1.12-.6a1.65 1.65 0 0 1 2 0c.35.18.74.38 1 .6A1.65 1.65 0 0 0 16.72 6.27l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 11c-.22.38-.42.77-.6 1a1.65 1.65 0 0 1 0 2c.18.35.38.74.6 1z"/></svg> Pengaturan</h3><span class="kbd">⌘,</span></div><div class="right-body" id="rightBody"></div></aside>
+  <aside class="right" aria-label="Pengaturan"><div class="right-head"><h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h4"/><path d="M12 6h8"/><circle cx="8" cy="6" r="2"/><path d="M3 12h10"/><path d="M18 12h2"/><circle cx="15" cy="12" r="2"/><path d="M3 18h6"/><path d="M14 18h6"/><circle cx="10" cy="18" r="2"/></svg> Pengaturan</h3><span class="kbd">⌘,</span></div><div class="right-body" id="rightBody"></div></aside>
 </div>
 <div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" aria-label="Pengaturan"><div class="right-head"><h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6 1.65 1.65 0 0 1-2 0 1.65 1.65 0 0 0-1-.6 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 6.6 15a1.65 1.65 0 0 0-.6-1 1.65 1.65 0 0 1 0-2c.18-.38.38-.77.6-1A1.65 1.65 0 0 0 6.27 9l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 10.88 6.6c.38-.22.77-.42 1.12-.6a1.65 1.65 0 0 1 2 0c.35.18.74.38 1 .6A1.65 1.65 0 0 0 16.72 6.27l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 11c-.22.38-.42.77-.6 1a1.65 1.65 0 0 1 0 2c.18.35.38.74.6 1z"/></svg> Pengaturan</h3><button class="btn-icon" id="btnCloseDrawer"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><div class="right-body" id="drawerBody"></div></aside>
+<aside class="drawer" id="drawer" aria-label="Pengaturan"><div class="right-head"><h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h4"/><path d="M12 6h8"/><circle cx="8" cy="6" r="2"/><path d="M3 12h10"/><path d="M18 12h2"/><circle cx="15" cy="12" r="2"/><path d="M3 18h6"/><path d="M14 18h6"/><circle cx="10" cy="18" r="2"/></svg> Pengaturan</h3><button class="btn-icon" id="btnCloseDrawer"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><div class="right-body" id="drawerBody"></div></aside>
 <div class="bottom-dock"><div class="dock" role="tablist">
   <button class="active" data-tab="cover"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg> Awal</button>
   <button data-tab="yasin"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Yasin</button>
   <button data-tab="tahlil"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> Tahlil</button>
-  <button data-tab="doa"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/></svg> Doa</button>
-  <button class="dock-cta" id="dockSettings" aria-label="Pengaturan"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6 1.65 1.65 0 0 1-2 0 1.65 1.65 0 0 0-1-.6 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 6.6 15a1.65 1.65 0 0 0-.6-1 1.65 1.65 0 0 1 0-2c.18-.38.38-.77.6-1A1.65 1.65 0 0 0 6.27 9l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 10.88 6.6c.38-.22.77-.42 1.12-.6a1.65 1.65 0 0 1 2 0c.35.18.74.38 1 .6A1.65 1.65 0 0 0 16.72 6.27l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 11c-.22.38-.42.77-.6 1a1.65 1.65 0 0 1 0 2c.18.35.38.74.6 1z"/></svg></button>
+  <button data-tab="doa"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11V9a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v2"/><path d="M15 11V9a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v2"/><path d="M8 12c0 2.2 1.8 4 4 4s4-1.8 4-4"/><path d="M12 7v5"/></svg> Doa</button>
+  <button class="dock-cta" id="dockSettings" aria-label="Pengaturan"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 6h4"/><path d="M12 6h8"/><circle cx="8" cy="6" r="2"/><path d="M3 12h10"/><path d="M18 12h2"/><circle cx="15" cy="12" r="2"/><path d="M3 18h6"/><path d="M14 18h6"/><circle cx="10" cy="18" r="2"/></svg></button>
 </div></div>
 <script>
 let YASIN=[],TAHLIL=[],DOA=[];
@@ -382,27 +390,9 @@ function applyTheme(){ if(prefs.theme==='dark') document.documentElement.setAttr
 function settingsHTML(){
   return `
   <div class="group" style="border-color:var(--accent);background:var(--card)">
-    <h4><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg> Data Almarhumah \u2014 Halaman Awal</h4>
-    <div class="field"><label>Nama lengkap</label><input id="fName" value="${cover.name}"></div>
-    <div class="field"><label>Bin / Binti (kosongkan jika tidak ada)</label><input id="fBin" value="${cover.bin}" placeholder="binti ..."></div>
-    <div class="field"><label>Keluarga / Dedication</label><input id="fFamily" value="${cover.family}"></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-      <div class="field"><label>Tgl Wafat</label><input id="fWafat" value="${cover.wafat}"></div>
-      <div class="field"><label>Hijriyah / Usia</label><input id="fWafatHijri" value="${cover.wafatHijri}"></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-      <div class="field"><label>Acara</label><input id="fAcara" value="${cover.acara}"></div>
-      <div class="field"><label>Waktu Acara</label><input id="fAcaraSub" value="${cover.acaraSub}"></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-      <div class="field"><label>Keluarga utama</label><input id="fTempat" value="${cover.tempat}"></div>
-      <div class="field"><label>Anggota keluarga</label><input id="fAlamat" value="${cover.alamat}"></div>
-    </div>
-    <div class="field"><label>Lahir</label><input id="fLahir" value="${cover.lahir}"></div>
-    <div class="field"><label>Doa / Quote</label><textarea id="fQuote">${cover.quote}</textarea></div>
-    <div class="field"><label>URL Foto</label><input id="fPhotoUrl" value="${cover.photo.startsWith('data:')?'':cover.photo}" placeholder="assets/img/portrait.jpg atau https://..."></div>
-    <button class="btn-sm primary" id="btnSimpanCover" style="width:100%;justify-content:center;margin-top:10px;height:40px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg> Simpan Halaman Awal</button>
-    <div class="hint" style="margin-top:6px">Tersimpan di localStorage. Default foto <code>assets/img/portrait.jpg</code>.</div>
+    <h4><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Data Almarhumah — via kode</h4>
+    <div style="font-size:13px;line-height:1.6;color:var(--ink)"><b>${cover.name}</b>${cover.bin?' '+cover.bin:''}<br><span style="color:var(--muted)">${cover.lahir} — ${cover.wafat} • ${cover.wafatHijri}</span><br><span style="color:var(--muted)">${cover.tempat} • ${cover.alamat}</span></div>
+    <div class="hint" style="margin-top:8px">Edit permanen di <code>index.html → let cover</code> & foto <code>assets/img/portrait.jpg</code>. Tidak ada editor web.</div>
   </div>
   <div class="group">
     <h4><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7V5h16v2"/><path d="M9 20h6"/><path d="M12 5v15"/></svg> Tampilan bacaan</h4>
@@ -423,24 +413,7 @@ function bindSettings(root){
   root.querySelectorAll('[data-act="minus"]').forEach(b=> b.onclick=()=>{prefs.fontScale=Math.max(-2,prefs.fontScale-1);refresh()});
   root.querySelectorAll('[data-act="plus"]').forEach(b=> b.onclick=()=>{prefs.fontScale=Math.min(4,prefs.fontScale+1);refresh()});
   root.querySelectorAll('.qari').forEach(el=> el.onclick=()=>{prefs.qari=el.dataset.qari;refresh()});
-  const btn=root.querySelector('#btnSimpanCover');
-  if(btn) btn.onclick=()=>{
-    cover.name=root.querySelector('#fName').value.trim()||cover.name;
-    cover.bin=root.querySelector('#fBin').value.trim();
-    cover.family=root.querySelector('#fFamily').value.trim();
-    cover.wafat=root.querySelector('#fWafat').value.trim();
-    cover.wafatHijri=root.querySelector('#fWafatHijri').value.trim();
-    cover.acara=root.querySelector('#fAcara').value.trim();
-    cover.acaraSub=root.querySelector('#fAcaraSub').value.trim();
-    cover.tempat=root.querySelector('#fTempat').value.trim();
-    cover.alamat=root.querySelector('#fAlamat').value.trim();
-    cover.lahir=root.querySelector('#fLahir').value.trim();
-    cover.quote=root.querySelector('#fQuote').value.trim();
-    const url=root.querySelector('#fPhotoUrl').value.trim();
-    if(url) cover.photo=url;
-    saveCover(); applyCover(); refresh();
-    btn.textContent='\u2713 Tersimpan'; setTimeout(()=> btn.textContent='Simpan Halaman Awal',1400);
-  };
+
 }
 function refresh(){
   applyTheme(); applyCover();
@@ -453,7 +426,7 @@ function refresh(){
   render();
 }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function ayahCard(a){ const L=prefs.showLatin&&!prefs.arabOnly,T=prefs.showTerjemah&&!prefs.arabOnly; const latinHtml = (a.latin && L) ? `<div class="latin">${esc(a.latin)}</div>` : ''; const terjHtml = T ? `<div class="terjemah">${esc(a.terjemah)}</div>` : ''; return `<article class="ayah" id="ayah-${a.no}"><div class="ayah-side"><div class="num">${String(a.no).padStart(2,'0')}</div><small>YASIN<br>36:${a.no}</small><div style="display:flex;flex-direction:column;gap:6px;margin-top:auto"><button class="mini" title="Salin link" onclick="navigator.clipboard.writeText(location.href.split('#')[0]+'#ayah-${a.no}')"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button><button class="mini" title="Play"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 8l6 4-6 4z"/></svg></button></div></div><div class="ayah-body"><div class="arab">${a.arab}</div>${latinHtml}${terjHtml}<div class="ayah-foot"><span class="tag">Ayat ${a.no} \u2022 Utsmani</span><span class="tag" style="background:var(--gold-soft)">Kemenag</span><span style="margin-left:auto;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 6v6l4 2"/></svg> ${esc(prefs.qari)}</span></div></div></article>`}
+function ayahCard(a){ const L=prefs.showLatin&&!prefs.arabOnly,T=prefs.showTerjemah&&!prefs.arabOnly; const latinHtml = (a.latin && L) ? `<div class="latin">${esc(a.latin)}</div>` : ''; const terjHtml = T ? `<div class="terjemah">${esc(a.terjemah)}</div>` : ''; return `<article class="ayah" id="ayah-${a.no}"><div class="ayah-side"><div class="num">${String(a.no).padStart(2,'0')}</div><small>YASIN<br>36:${a.no}</small><div style="display:flex;flex-direction:column;gap:6px;margin-top:auto"><button class="mini" title="Salin link" onclick="navigator.clipboard.writeText(location.href.split('#')[0]+'#ayah-${a.no}')"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button><button class="mini" title="Play murottal" onclick="playAyah(a.no, this)"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 8l6 4-6 4z"/></svg></button></div></div><div class="ayah-body"><div class="arab">${a.arab}</div>${latinHtml}${terjHtml}<div class="ayah-foot"><span class="tag">Ayat ${a.no} \u2022 Utsmani</span><span class="tag" style="background:var(--gold-soft)">Kemenag</span><span style="margin-left:auto;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 6v6l4 2"/></svg> ${esc(prefs.qari)}</span></div></div></article>`}
 function tahlilCard(t){ const cnt=t.counter?`<span class="tag">${t.counter}\u00D7</span>`:''; const btn=t.counter?`<div style="margin-top:12px;display:flex;gap:8px;align-items:center"><button style="height:32px;padding:0 14px;border-radius:999px;border:none;background:var(--accent);color:var(--paper);font-weight:700;cursor:pointer" data-m="${t.counter}" data-n="0" onclick="let m=parseInt(this.dataset.m),n=parseInt(this.dataset.n)+1;n=Math.min(m,n);this.dataset.n=n;this.textContent=n+' / '+m+(n===m?' \u2713':'')">0 / ${t.counter}</button><span style="font-size:12px;color:var(--muted)">tap untuk hitung</span></div>`:''; return `<article class="ayah" style="grid-template-columns:1fr"><div class="ayah-body"><div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap"><span style="background:var(--ink);color:var(--paper);font-size:11px;font-weight:700;padding:6px 10px;border-radius:999px">${esc(t.judul)}</span>${cnt}</div><div class="arab">${t.arab}</div><div class="latin">${esc(t.latin)}</div><div class="terjemah">${esc(t.terjemah)}</div>${btn}</div></article>`}
 function render(){
   const q=document.getElementById('search')?.value.toLowerCase().trim()||'';
@@ -474,6 +447,8 @@ function render(){
     if(TAHLIL.length===0) lt.innerHTML=`<div style="background:var(--card);border:1px solid #e2a3a3;border-radius:16px;padding:18px;color:#8b2c2c;text-align:center">Gagal memuat Tahlil.</div>`;
     else lt.innerHTML=TAHLIL.map(tahlilCard).join('');
   }
+  // stagger reveal
+  requestAnimationFrame(()=>{ document.querySelectorAll('.ayah').forEach((el,i)=>{ el.style.animationDelay=(Math.min(i*0.04,0.6))+'s'; el.classList.add('in-view'); }); });
   const ld=document.getElementById('list-doa');
   if(ld){
     if(DOA.length===0 && TAHLIL.length>0) ld.innerHTML=`<div style="text-align:center;padding:24px;color:var(--muted)">Tidak ada doa (filter section mengandung 'Doa')</div>`;
@@ -504,12 +479,6 @@ document.getElementById('btnMinus')?.addEventListener('click', ()=>{prefs.fontSc
 document.getElementById('btnPlus')?.addEventListener('click', ()=>{prefs.fontScale=Math.min(4,prefs.fontScale+1);refresh()});
 document.getElementById('btnTheme')?.addEventListener('click', ()=>{prefs.theme=prefs.theme==='dark'?'light':'dark';refresh()});
 document.getElementById('btnMasuk')?.addEventListener('click', ()=> activate('yasin'));
-document.getElementById('btnEditCover')?.addEventListener('click', ()=>{ document.getElementById('drawer').classList.add('show'); document.getElementById('scrim').classList.add('show'); document.getElementById('drawerBody').querySelector('#fName')?.focus(); });
-document.getElementById('photoInput')?.addEventListener('change', e=>{
-  const f=e.target.files[0]; if(!f) return;
-  const r=new FileReader(); r.onload=()=>{ cover.photo=r.result; saveCover(); applyCover(); refresh(); }; r.readAsDataURL(f);
-});
-document.getElementById('btnHapusFoto')?.addEventListener('click', ()=>{ cover.photo="assets/img/portrait.jpg"; saveCover(); applyCover(); refresh(); });
 
 const scrim=document.getElementById('scrim'), drawer=document.getElementById('drawer');
 function openDrawer(){ scrim.classList.add('show'); drawer.classList.add('show'); }
@@ -519,6 +488,22 @@ document.getElementById('dockSettings')?.addEventListener('click', openDrawer);
 document.getElementById('btnCloseDrawer')?.addEventListener('click', closeDrawer);
 scrim?.addEventListener('click', closeDrawer);
 document.addEventListener('keydown', e=>{ if(e.key==='/' && document.activeElement.tagName!=='INPUT' && document.activeElement.tagName!=='TEXTAREA'){ e.preventDefault(); document.getElementById('search')?.focus(); } if(e.key==='Escape') closeDrawer(); });
+
+
+// --- Audio: everyayah per-ayah ---
+const QARI_MAP={'Misyari Rashid':'Alafasy_128kbps','Abdurrahman As-Sudais':'Abdurrahman_As-Sudais_192kbps','Maher Al-Muaiqly':'MaherAlMuaiqly_128kbps'};
+let audioEl=null, curAyah=null;
+function ensureAudio(){ if(audioEl) return audioEl; audioEl=document.getElementById('audioPlayer'); if(!audioEl){ audioEl=document.createElement('audio'); audioEl.id='audioPlayer'; audioEl.preload='none'; audioEl.controls=true; audioEl.style.cssText='position:fixed;left:50%;transform:translateX(-50%);bottom:92px;z-index:35;width:min(420px,calc(100vw - 24px));display:none;border-radius:999px;box-shadow:var(--shadow-lg)'; document.body.appendChild(audioEl); } audioEl.onended=()=>{ curAyah=null; document.querySelectorAll('.ayah .mini.playing').forEach(b=>{b.classList.remove('playing'); b.innerHTML='<svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 8l6 4-6 4z"/></svg>'}); audioEl.style.display='none'; }; audioEl.onerror=()=>{ const st=document.getElementById('audioStatus'); if(st) st.textContent='Gagal memuat audio — coba qari lain'; }; return audioEl; }
+function playAyah(no, btn){
+  const a=ensureAudio(); const q=QARI_MAP[prefs.qari]||'Alafasy_128kbps';
+  const id=String(36).padStart(3,'0')+String(no).padStart(3,'0');
+  const url=`https://everyayah.com/data/${q}/${id}.mp3`;
+  if(curAyah===no && !a.paused){ a.pause(); btn?.classList.remove('playing'); if(btn) btn.innerHTML='<svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 8l6 4-6 4z"/></svg>'; return; }
+  document.querySelectorAll('.ayah .mini.playing').forEach(b=>{b.classList.remove('playing'); b.innerHTML='<svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 8l6 4-6 4z"/></svg>'});
+  curAyah=no; a.src=url; a.style.display='block'; a.play().catch(()=>{ const st=document.getElementById('audioStatus'); if(st) st.textContent='Tap play di player — browser blok autoplay'; });
+  if(btn){ btn.classList.add('playing'); btn.innerHTML='<svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="7" width="10" height="10" rx="1"/></svg>'; }
+  const st=document.getElementById('audioStatus'); if(st) st.textContent=`Memutar Yasin ${no} — ${prefs.qari}`;
+}
 
 // init — fetch JSON then render
 async function init(){
