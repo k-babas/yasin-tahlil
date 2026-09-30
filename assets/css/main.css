@@ -214,11 +214,12 @@ p {
   }
 }
 
-.stagger {
+/* Progressive enhancement: text visible by default, animates when JS loaded */
+html.stagger-ready .stagger {
   opacity: 0;
 }
 
-.stagger.visible {
+html.stagger-ready .stagger.visible {
   animation: fade-in-up 0.6s ease forwards;
 }
 
@@ -463,11 +464,16 @@ p {
 }
 
 .booklet-section {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.stagger-ready .booklet-section {
   opacity: 0;
   transform: translateY(24px);
 }
 
-.booklet-section.in-view {
+html.stagger-ready .booklet-section.in-view {
   animation: section-reveal 0.6s ease forwards;
 }
 

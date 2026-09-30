@@ -41,6 +41,9 @@ import { initViews, showBooklet, showCover } from './view.js';
   initTheme();
   themeToggle.addEventListener('click', toggleTheme);
 
+  // Progressive enhancement: enable stagger animations only when JS is ready
+  document.documentElement.classList.add('stagger-ready');
+
   // --- Views ---
   const views = initViews();
   const coverContainer = document.getElementById('cover-content');
