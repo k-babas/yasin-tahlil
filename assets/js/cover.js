@@ -6,14 +6,20 @@ export function renderCover(container, data) {
 
   var staggerIndex = 0;
 
-  function createStagger() {
+  function createStagger(text) {
     var el = document.createElement('div');
     el.className = 'stagger';
-    // Stagger delay: 100ms per element
     el.style.animationDelay = (staggerIndex * 100) + 'ms';
     staggerIndex++;
+    if (text) el.textContent = text;
     return el;
   }
+
+  // Dedication text (before photo)
+  var dedication = createStagger();
+  dedication.className = 'stagger cover-dedication';
+  dedication.textContent = 'Dipersembahkan suami untuk almarhumah';
+  container.appendChild(dedication);
 
   // Portrait
   var frameWrap = createStagger();
@@ -97,7 +103,7 @@ export function renderCover(container, data) {
   btnStagger.appendChild(btn);
   container.appendChild(btnStagger);
 
-  // Trigger staggered animations after a small delay
+  // Trigger staggered animations
   requestAnimationFrame(function () {
     var staggerEls = container.querySelectorAll('.stagger');
     staggerEls.forEach(function (el) {

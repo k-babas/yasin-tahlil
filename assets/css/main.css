@@ -325,6 +325,8 @@ p {
   -webkit-backdrop-filter: blur(8px);
   transform: translateY(0);
   transition: background-color var(--transition-normal);
+  display: flex;
+  align-items: center;
 }
 
 /* Slide-up entrance for back button */
@@ -370,6 +372,71 @@ p {
 .btn-back svg {
   width: 16px;
   height: 16px;
+}
+
+/* === Tab bar === */
+.tab-bar {
+  display: flex;
+  gap: var(--space-xs);
+  margin-left: var(--space-md);
+}
+
+.tab-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: var(--space-xs) var(--space-md);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tab-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.tab-btn--active {
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content--active {
+  display: block;
+}
+
+/* === Cover dedication === */
+.cover-dedication {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  letter-spacing: 0.01em;
+  margin-bottom: var(--space-sm);
+}
+
+/* === Bait header (number + section label) === */
+.bait-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.bait-section-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 /* === Booklet Sections === */

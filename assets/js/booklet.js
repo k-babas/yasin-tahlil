@@ -1,5 +1,6 @@
 /**
- * booklet.js — Render Yasin + Tahlil from JSON, with smooth toggle transitions
+ * booklet.js — Tab-based Yasin + Tahlil renderer
+ * After Mulai: default ke tab Yasin. Tab buttons switch content.
  */
 export async function loadBooklet(container) {
   container.innerHTML = '<p class="loading-text">Memuat...</p>';
@@ -13,14 +14,15 @@ export async function loadBooklet(container) {
     var yasinRes = responses[0];
     var tahlilRes = responses[1];
 
-    if (!yasinRes.ok || !tahlilRes.ok) throw new Error('Gagal memuat data');
+    if (!yasinRes.ok) throw new Error('Gagal memuat Yasin: ' + yasinRes.status);
+    if (!tahlilRes.ok) throw new Error('Gagal memuat Tahlil: ' + tahlilRes.status);
 
     var yasin = await yasinRes.json();
     var tahlil = await tahlilRes.json();
 
     container.innerHTML = '';
 
-    // Back button
+    // === Back button ===
     var backWrap = document.createElement('div');
     backWrap.className = 'back-btn-wrap';
     var backBtn = document.createElement('button');
@@ -28,15 +30,45 @@ export async function loadBooklet(container) {
     backBtn.id = 'back-btn';
     backBtn.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L5 8l5 5"/></svg> Kembali';
     backWrap.appendChild(backBtn);
+
+    // === Tab bar ===
+    var tabBar = document.createElement('div');
+    tabBar.className = 'tab-bar';
+
+    var tabYasin = document.createElement('button');
+    tabYasin.className = 'tab-btn tab-btn--active';
+    tabYasin.setAttribute('data-tab', 'yasin');
+    tabYasin.textContent = 'Yasin';
+    tabBar.appendChild(tabYasin);
+
+    var tabTahlil = document.createElement('button');
+    tabTahlil.className = 'tab-btn';
+    tabTahlil.setAttribute('data-tab', 'tahlil');
+    tabTahlil.textContent = 'Tahlil';
+    tabBar.appendChild(tabTahlil);
+
+    backWrap.appendChild(tabBar);
     container.appendChild(backWrap);
 
-    // Yasin section
-    renderYasinSection(container, yasin);
+    // === Tab content wrappers ===
+    var yasinContent = document.createElement('div');
+    yasinContent.className = 'tab-content tab-content--active';
+    yasinContent.id = 'tab-yasin';
 
-    // Tahlil section
-    renderTahlilSection(container, tahlil);
+    var tahlilContent = document.createElement('div');
+    tahlilContent.className = 'tab-content';
+    tahlilContent.id = 'tab-tahlil';
 
-    // Footer
+    // Render Yasin
+    renderYasinSection(yasinContent, yasin);
+
+    // Render Tahlil
+    renderTahlilSection(tahlilContent, tahlil);
+
+    container.appendChild(yasinContent);
+    container.appendChild(tahlilContent);
+
+    // === Footer ===
     var footer = document.createElement('footer');
     footer.className = 'site-footer';
     var footerText = document.createElement('p');
@@ -48,9 +80,24 @@ export async function loadBooklet(container) {
     footer.appendChild(footerArabic);
     container.appendChild(footer);
 
+    // === Tab switching logic ===
+    function switchTab(tabName) {
+      // Update tab buttons
+      tabBar.querySelectorAll('.tab-btn').forEach(function (b) {
+        b.classList.toggle('tab-btn--active', b.getAttribute('data-tab') === tabName);
+      });
+      // Update content
+      yasinContent.classList.toggle('tab-content--active', tabName === 'yasin');
+      tahlilContent.classList.toggle('tab-content--active', tabName === 'tahlil');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    tabYasin.addEventListener('click', function () { switchTab('yasin'); });
+    tabTahlil.addEventListener('click', function () { switchTab('tahlil'); });
+
   } catch (err) {
+    console.error('Booklet load error:', err);
     container.innerHTML = '<p class="loading-text">Gagal memuat data. Silakan muat ulang halaman.</p>';
-    console.error(err);
   }
 }
 
@@ -65,7 +112,7 @@ function renderYasinSection(container, data) {
 
   var info = document.createElement('p');
   info.className = 'section-source';
-  info.textContent = 'Surah ' + data.surah + ' \u2014 ' + data.count + ' ayat';
+  info.textContent = 'Surah ' + data.surah + ' — ' + data.count + ' ayat';
   section.appendChild(info);
 
   // Toggle bar
@@ -86,7 +133,7 @@ function renderYasinSection(container, data) {
     num.textContent = a.n;
     item.appendChild(num);
 
-    // Arabic (above transliteration)
+    // Arabic
     var ar = document.createElement('p');
     ar.className = 'arabic';
     ar.textContent = a.ar;
@@ -123,7 +170,7 @@ function renderTahlilSection(container, data) {
 
   var info = document.createElement('p');
   info.className = 'section-source';
-  info.textContent = data.count + ' bagian \u2014 ' + data.source;
+  info.textContent = data.count + ' bagian — ' + data.source;
   section.appendChild(info);
 
   // Toggle bar
@@ -138,22 +185,22 @@ function renderTahlilSection(container, data) {
     var item = document.createElement('div');
     item.className = 'bait-item';
 
-    // Number badge
-    var num = document.createElement('div');
+    // Number + section label
+    var numWrap = document.createElement('div');
+    numWrap.className = 'bait-header';
+    var num = document.createElement('span');
     num.className = 'bait-num';
     num.textContent = b.n;
-    item.appendChild(num);
-
-    // Section label
+    numWrap.appendChild(num);
     if (b.section) {
       var secLabel = document.createElement('span');
-      secLabel.className = 'bait-num-full';
-      secLabel.textContent = ' \u2014 ' + b.section;
-      secLabel.style.color = 'var(--accent)';
-      item.appendChild(secLabel);
+      secLabel.className = 'bait-section-label';
+      secLabel.textContent = b.section;
+      numWrap.appendChild(secLabel);
     }
+    item.appendChild(numWrap);
 
-    // Arabic (above transliteration)
+    // Arabic
     var ar = document.createElement('p');
     ar.className = 'arabic';
     ar.textContent = b.ar;
@@ -189,14 +236,11 @@ function makeToggle(id, label) {
     var pressed = btn.getAttribute('aria-pressed') === 'true';
     btn.setAttribute('aria-pressed', String(!pressed));
 
-    // Smooth toggle with height transition
     var targets = document.querySelectorAll('[data-show="' + id + '"]');
     targets.forEach(function (el) {
       if (!pressed) {
-        // Show
         el.classList.add('show');
       } else {
-        // Hide
         el.classList.remove('show');
       }
     });
