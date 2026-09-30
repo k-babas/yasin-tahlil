@@ -102,9 +102,11 @@ button{font-family:inherit}
 .quote{border-left:2px solid var(--accent);padding:10px 12px;background:var(--card-2);border-radius:12px;font-size:13px;color:var(--ink);line-height:1.6}
 .quote small{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
-.cta-primary{flex:1;min-width:160px;height:46px;border-radius:999px;border:none;background:var(--accent);color:var(--paper);font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.cta-primary{flex:1;min-width:160px;height:46px;border-radius:999px;border:none;background:var(--accent);color:var(--paper);font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 2px 12px rgba(20,61,42,.18)}
 [data-theme="dark"] .cta-primary{color:#0D1712}
-.cta-secondary{height:46px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:600;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.cta-secondary{flex:0 0 auto;height:46px;padding:0 18px;border-radius:999px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);font-weight:600;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+.cta-secondary:hover{background:var(--card-2);border-color:var(--accent)}
+[data-theme="dark"] .cta-secondary{border-color:var(--line);background:var(--card-2)}
 .cta-note{font-size:11px;color:var(--muted);text-align:center}
 
 /* FILTER etc */
@@ -216,8 +218,8 @@ button{font-family:inherit}
   .basmalah{font-size:18px}
   .meta-grid{grid-template-columns:1fr 1fr;gap:8px}
   .meta{padding:10px}
-  .cta-primary{height:44px;font-size:13px}
-  .cta-secondary{height:44px}
+  .cta-row{flex-direction:column}
+  .cta-primary,.cta-secondary{width:100%;min-width:0;height:44px;font-size:13px}
   .filterbar{margin:10px 12px 0;max-width:calc(100% - 24px);gap:8px}
   .search{height:40px;flex-basis:100%}
   .filter-pills{width:100%;overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap;padding-bottom:2px}
@@ -235,7 +237,6 @@ button{font-family:inherit}
 }
 @media(max-width:380px){
   .meta-grid{grid-template-columns:1fr}
-  .cta-row{flex-direction:column}
 }
 
 
