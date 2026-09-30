@@ -102,9 +102,9 @@ button{font-family:inherit}
 .quote{border-left:2px solid var(--accent);padding:10px 12px;background:var(--card-2);border-radius:12px;font-size:13px;color:var(--ink);line-height:1.6}
 .quote small{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
-.cta-primary{flex:1;min-width:160px;height:46px;border-radius:999px;border:none;background:var(--accent);color:var(--paper);font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 2px 12px rgba(20,61,42,.18)}
+.cta-primary{flex:1 1 0;min-width:0;height:48px;padding:0 18px;border-radius:999px;border:none;background:var(--accent);color:var(--paper);font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 2px 12px rgba(20,61,42,.18)}
 [data-theme="dark"] .cta-primary{color:#0D1712}
-.cta-secondary{flex:0 0 auto;height:46px;padding:0 18px;border-radius:999px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);font-weight:600;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+.cta-secondary{flex:1 1 0;min-width:0;height:48px;padding:0 18px;border-radius:999px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);font-weight:600;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
 .cta-secondary:hover{background:var(--card-2);border-color:var(--accent)}
 [data-theme="dark"] .cta-secondary{border-color:var(--line);background:var(--card-2)}
 .cta-note{font-size:11px;color:var(--muted);text-align:center}
@@ -316,7 +316,7 @@ button{font-family:inherit}
             <div class="quote" id="vQuote">“إِنَّا لِلَّهِ وَإِنَّآ إِلَيْهِ رَاجِعُونَ — اللَّهُمَّ ارْحَمْهَا بِرَحْمَتِكَ الوَاسِعَةِ، وَأَغْفِرْ لَهَا بِفَضْلِكَ.”<small>Dipersembahkan suami untuk almarhumah Lia Aris Tiarawati • Al-Fatihah dihadiahkan untuk beliau</small></div>
             <div class="cta-row">
               <button class="cta-primary" data-jump="yasin"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Buka Yasin</button>
-              <button class="cta-secondary" data-jump="tahlil"><svg class="ico ico-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> Buka Tahlil</button></div>
+              <button class="cta-secondary" data-jump="tahlil"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 7V3M12 21v-4M7 12H3M21 12h-4"/></svg> Buka Tahlil</button></div>
             <div class="cta-note">Halaman awal tampil pertama. Edit data di <code>index.html → let cover</code> & foto <code>assets/img/portrait.jpg</code>.</div>
           </div>
         </div>
