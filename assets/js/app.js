@@ -67,40 +67,9 @@ import { initViews, showBooklet, showCover } from './view.js';
           showCover(views);
         });
       }
-
-      // Init IntersectionObserver for section reveal
-      initSectionObserver();
     }
     showBooklet(views);
   });
-
-  // --- IntersectionObserver for booklet sections ---
-  function initSectionObserver() {
-    var sections = bookletContainer.querySelectorAll('.booklet-section');
-    if (!sections.length) return;
-
-    // Respect prefers-reduced-motion
-    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) {
-      sections.forEach(function (s) {
-        s.classList.add('in-view');
-      });
-      return;
-    }
-
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    sections.forEach(function (s) {
-      observer.observe(s);
-    });
-  }
 
   // --- Cover transition styles ---
   views.cover.style.transition = 'opacity var(--transition-normal)';

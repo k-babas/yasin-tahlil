@@ -468,14 +468,7 @@ html.stagger-ready .stagger.visible {
   transform: translateY(0);
 }
 
-html.stagger-ready .booklet-section {
-  opacity: 0;
-  transform: translateY(24px);
-}
-
-html.stagger-ready .booklet-section.in-view {
-  animation: section-reveal 0.6s ease forwards;
-}
+/* No opacity animation on booklet sections — content always visible */
 
 /* Section title */
 .section-title {
